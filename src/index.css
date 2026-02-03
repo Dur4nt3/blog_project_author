@@ -1,4 +1,13 @@
-@import url(./assets/stylesheets/fonts.css);
+@font-face {
+    font-family: SourceSerif4;
+    src: url(./assets//fonts//SourceSerif4-VariableFont.ttf);
+}
+
+@font-face {
+    font-family: SourceSerif4;
+    src: url(./assets//fonts//SourceSerif4-Italic-VariableFont.ttf);
+    font-style: italic;
+}
 
 :root {
     --font-stack:
@@ -12,8 +21,34 @@
     --fs-xl: clamp(1.95rem, 1.43vi + 1.67rem, 2.81rem);
     --fs-xxl: clamp(2.44rem, 2.18vi + 2.01rem, 3.75rem);
     --fs-xxxl: clamp(3.05rem, 3.24vi + 2.4rem, 5rem);
+
+    --dark-text: #0f172a;
+    --light-text:  #fbfbfc;
+    --dark-subtext: rgb(15 23 42 / 60%);
+
+    --background-color: #fbfbfc;
+
+    --primary-color: #2563eb;
+    --secondary-color: #e8eefc;
+    --accent-color: #1e40af;
+
+    --separator-border: #d5dae3;
 }
 
 body {
-    font-family: var(--font-stack);
+    font-family: SourceSerif4, var(--font-stack);
+
+    color: var(--dark-text);
+    background-color: var(--background-color);
+
+    min-height: 100svh;
+
+}
+
+#root {
+    min-height: 100svh;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
