@@ -1,8 +1,22 @@
 import './stylesheets/Signup.css';
 
-import { useFetcher } from 'react-router';
+import { useFetcher, Link } from 'react-router';
 
 import FormLoader from '../../utilities/miscUI/FormLoader';
+import HelpPopover from '../../utilities/miscUI/HelpPopover';
+
+function SignupPopoverContent() {
+    return (
+        <>
+            <span>
+                A special key required in order to create an author account, if
+                you don't have this key signup&nbsp;
+            </span>
+            <a href={`${import.meta.env.VITE_READER_APP}/signup`} className='signup-popover-link'>here</a>
+            <span>&nbsp;instead.</span>
+        </>
+    );
+}
 
 export default function Signup() {
     const fetcher = useFetcher();
@@ -35,13 +49,21 @@ export default function Signup() {
             </div>
 
             <div className='form-row'>
-                <label htmlFor='key'>Author Key</label>
+                <label htmlFor='key'>
+                    Author Key{' '}
+                    <HelpPopover content={<SignupPopoverContent />} />
+                </label>
                 <input type='text' name='key' id='key' />
             </div>
 
             <button type='submit'>
                 {fetcher.state === 'idle' ? 'Create Account' : <FormLoader />}
             </button>
+
+            <p className='login-notice'>
+                Already have an account?&nbsp;
+                <Link to='/login'>Log in</Link>
+            </p>
         </fetcher.Form>
     );
 }

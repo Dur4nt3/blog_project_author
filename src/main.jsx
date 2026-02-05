@@ -1,7 +1,8 @@
-import './index.css';
-import './assets/stylesheets/reset.css';
 
 import '@mantine/core/styles.css';
+
+import './index.css';
+import './assets/stylesheets/reset.css';
 
 import { MantineProvider } from '@mantine/core';
 

@@ -39,6 +39,8 @@
     --separator-border: #d5dae3;
     --error-border: #dc2626;
 
+    --hover-dark-darker: #070c17;
+
     --shadow-sm: 0 0 5px 1px rgb(0 0 0 / 0.18), 0 0 2px 0 rgb(0 0 0 / 0.14);
 }
 
@@ -64,7 +66,9 @@ body {
 /* ######################### Form Styles ######################### */
 
 .author-form {
-    max-width: 300px;
+    margin-top: 3rem;
+
+    width: 300px;
 
     border-radius: 0.35rem;
     padding: 1rem;
@@ -97,9 +101,16 @@ body {
     font-weight: 500;
 }
 
+.form-row > label:has(.popover-target-button) {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
 .form-row > input {
-    padding: 0.5rem 0.75rem;
+    padding: 0.35rem 0.6rem;
     background-color: transparent;
+    caret-color: var(--dark-text);
 
     outline: none;
     border: 1px solid var(--separator-border);
@@ -112,10 +123,40 @@ body {
     border: 1px solid var(--primary-color);
 }
 
-.author-form button {
-    margin-top: 1rem;
+.popover-target-button {
+    color: var(--dark-text);
+    cursor: pointer;
+    border: 1px solid var(--dark-text);
+    background-color: transparent;
+    border-radius: 50%;
+    height: 1.25rem;
+    width: 1.25rem;
+    line-height: 0;
+    padding: 0;
 
-    padding: 0.5rem 1rem;
+    transition: 0.2s ease-in-out;
+}
+
+.popover-target-button:hover,
+.popover-target-button:focus {
+    outline: none;
+    border: 1px solid var(--primary-color);
+}
+
+.popover-dropdown-text {
+    font-size: var(--fs-sm);
+    color: var(--light-text);
+    max-width: 240px;
+}
+
+.popover-dropdown-container {
+    background-color: var(--dark-text);
+}
+
+.author-form button:not(.popover-target-button) {
+    margin-top: 1.5rem;
+
+    padding: 0.35rem 0.85rem;
     border-radius: 0.35rem;
     border: none;
     background-color: var(--dark-text);
@@ -130,7 +171,33 @@ body {
 
     font-size: var(--fs-base);
 
-    height: calc(1lh + 0.5rem * 2);
+    height: calc(1lh + 0.35rem * 2);
+
+    transition: 0.2s ease-in-out;
+}
+
+.author-form button:not(.popover-target-button):hover {
+    background-color: var(--hover-dark-darker);
+}
+
+@media (min-width: 40rem) {
+    .author-form {
+        width: 420px;
+    }
+
+    .popover-dropdown-text {
+        max-width: 320px;
+    }
+}
+
+@media (min-width: 80rem) {
+    .author-form {
+        width: 480px;
+    }
+
+    .popover-dropdown-text {
+        max-width: 400px;
+    }
 }
 
 /* ######################### Form Styles ######################### */
