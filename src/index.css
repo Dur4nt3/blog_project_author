@@ -9,6 +9,8 @@
     font-style: italic;
 }
 
+/* ######################### General Styles ######################### */
+
 :root {
     --font-stack:
         system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
@@ -23,16 +25,21 @@
     --fs-xxxl: clamp(3.05rem, 3.24vi + 2.4rem, 5rem);
 
     --dark-text: #0f172a;
-    --light-text:  #fbfbfc;
+    --light-text: #fbfbfc;
     --dark-subtext: rgb(15 23 42 / 60%);
+    --error-text: #991818;
 
     --background-color: #fbfbfc;
+    --background-error: #fef2f2;
 
     --primary-color: #2563eb;
     --secondary-color: #e8eefc;
     --accent-color: #1e40af;
 
     --separator-border: #d5dae3;
+    --error-border: #dc2626;
+
+    --shadow-sm: 0 0 5px 1px rgb(0 0 0 / 0.18), 0 0 2px 0 rgb(0 0 0 / 0.14);
 }
 
 body {
@@ -42,7 +49,6 @@ body {
     background-color: var(--background-color);
 
     min-height: 100svh;
-
 }
 
 #root {
@@ -52,3 +58,79 @@ body {
     align-items: center;
     flex-direction: column;
 }
+
+/* ######################### General Styles ######################### */
+
+/* ######################### Form Styles ######################### */
+
+.author-form {
+    max-width: 300px;
+
+    border-radius: 0.35rem;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-sm);
+}
+
+.form-heading {
+    font-weight: 500;
+    font-size: var(--fs-lg);
+}
+
+.form-description {
+    font-size: var(--fs-sm);
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.form-row > label {
+    color: var(--dark-text);
+    font-weight: 500;
+}
+
+.form-row > input {
+    padding: 0.5rem 0.75rem;
+    background-color: transparent;
+
+    outline: none;
+    border: 1px solid var(--separator-border);
+    border-radius: 0.35rem;
+
+    transition: 0.2s ease-in-out;
+}
+
+.form-row > input:focus {
+    border: 1px solid var(--primary-color);
+}
+
+.author-form button {
+    margin-top: 1rem;
+
+    padding: 0.5rem 1rem;
+    border-radius: 0.35rem;
+    border: none;
+    background-color: var(--dark-text);
+    color: var(--light-text);
+    font-weight: 500;
+    width: 100%;
+
+    cursor: pointer;
+
+    display: grid;
+    place-items: center;
+
+    font-size: var(--fs-base);
+
+    height: calc(1lh + 0.5rem * 2);
+}
+
+/* ######################### Form Styles ######################### */
