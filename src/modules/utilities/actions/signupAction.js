@@ -13,7 +13,8 @@ export default async function signupAction({ request }) {
     const jsonData = Object.fromEntries(data);
 
     const clientValidation = validateSignup(jsonData);
-    if (clientValidation !== true) {
+    if (clientValidation !== null) {
+        console.log(clientValidation);
         return clientValidation;
     }
 
