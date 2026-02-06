@@ -2,6 +2,7 @@ import './stylesheets/Signup.css';
 
 import { useFetcher, Link } from 'react-router';
 
+import FormRow from './FormRow';
 import FormLoader from '../../utilities/miscUI/FormLoader';
 import HelpPopover from '../../utilities/miscUI/HelpPopover';
 
@@ -12,7 +13,12 @@ function SignupPopoverContent() {
                 A special key required in order to create an author account, if
                 you don't have this key signup&nbsp;
             </span>
-            <a href={`${import.meta.env.VITE_READER_APP}/signup`} className='signup-popover-link'>here</a>
+            <a
+                href={`${import.meta.env.VITE_READER_APP}/signup`}
+                className='signup-popover-link'
+            >
+                here
+            </a>
             <span>&nbsp;instead.</span>
         </>
     );
@@ -28,33 +34,36 @@ export default function Signup() {
                 Create an author account to publish and manage articles.
             </p>
 
-            <div className='form-row'>
-                <label htmlFor='username'>Username</label>
-                <input type='text' name='username' id='username' />
-            </div>
+            <FormRow
+                labelContent='Username'
+                inputType='text'
+                fieldName='username'
+            />
 
-            <div className='form-row'>
-                <label htmlFor='name'>Name</label>
-                <input type='text' name='name' id='name' />
-            </div>
+            <FormRow labelContent='Name' inputType='text' fieldName='name' />
 
-            <div className='form-row'>
-                <label htmlFor='password'>Password</label>
-                <input type='password' name='password' id='password' />
-            </div>
+            <FormRow
+                labelContent='Password'
+                inputType='password'
+                fieldName='password'
+            />
 
-            <div className='form-row'>
-                <label htmlFor='cpassword'>Confirm Password</label>
-                <input type='cpassword' name='cpassword' id='cpassword' />
-            </div>
+            <FormRow
+                labelContent='Confirm Password'
+                inputType='password'
+                fieldName='cpassword'
+            />
 
-            <div className='form-row'>
-                <label htmlFor='key'>
-                    Author Key{' '}
-                    <HelpPopover content={<SignupPopoverContent />} />
-                </label>
-                <input type='text' name='key' id='key' />
-            </div>
+            <FormRow
+                labelContent={
+                    <>
+                        <span>Author Key</span>
+                        <HelpPopover content={<SignupPopoverContent />} />
+                    </>
+                }
+                inputType='text'
+                fieldName='key'
+            />
 
             <button type='submit'>
                 {fetcher.state === 'idle' ? 'Create Account' : <FormLoader />}
