@@ -38,6 +38,7 @@
 
     --separator-border: #d5dae3;
     --error-border: #dc2626;
+    --valid-border: #00ba4d;
 
     --hover-dark-darker: #070c17;
 
@@ -83,6 +84,18 @@ body {
     font-size: var(--fs-lg);
 }
 
+.form-level-error {
+    font-size: var(--fs-sm);
+    text-align: center;
+    color: var(--error-text);
+    padding: 0.5rem;
+    border-radius: 0.35rem;
+    background-color: var(--background-error);
+    border: 1px solid var(--error-border);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
 .form-description {
     font-size: var(--fs-sm);
     font-style: italic;
@@ -121,6 +134,19 @@ body {
 
 .form-row > input:focus {
     border: 1px solid var(--primary-color);
+}
+
+.form-row > input.has-error:focus {
+    border: 1px solid var(--error-border);
+}
+
+.form-row > input.is-valid:focus {
+    border: 1px solid var(--valid-border);
+}
+
+.input-inline-error {
+    font-size: var(--fs-sm);
+    color: var(--error-text);
 }
 
 .popover-target-button {

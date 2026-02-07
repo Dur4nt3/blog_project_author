@@ -1,6 +1,6 @@
 import SignupError from '../classes/SignupError';
 
-function validateUsernameOrName(value, fieldName) {
+function validateUsernameOrName(value, fieldName, regex) {
     if (value === undefined) {
         return `${fieldName} must not be empty`;
     }
@@ -14,8 +14,6 @@ function validateUsernameOrName(value, fieldName) {
     if (trimmedValue.length < 3 || trimmedValue.length > 30) {
         return `${fieldName} must be between 3 and 30 characters`;
     }
-
-    const regex = /^[a-z0-9]+$/;
 
     if (!regex.test(trimmedValue)) {
         // eslint-disable-next-line @stylistic/max-len
@@ -79,8 +77,8 @@ function validateKey(value) {
 // Returns null if data is valid (no errors)
 // Returns an instance of "SignupError" if it isn't
 export default function validateSignup(jsonData) {
-    const usernameValid = validateUsernameOrName(jsonData.username, 'Username');
-    const nameValid = validateUsernameOrName(jsonData.name, 'Name');
+    const usernameValid = validateUsernameOrName(jsonData.username, 'Username', /^[a-z0-9]+$/);
+    const nameValid = validateUsernameOrName(jsonData.name, 'Name', /^[A-Za-z0-9]+$/);
     const passwordValid = validatePassword(jsonData.password);
     const cpasswordValid = validateCPassword(
         jsonData.cpassword,
