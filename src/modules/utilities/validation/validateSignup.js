@@ -1,6 +1,6 @@
 import SignupError from '../classes/SignupError';
 
-function validateUsernameOrName(value, fieldName, regex) {
+function validateUsernameOrName(value, fieldName, regex, error) {
     if (value === undefined) {
         return `${fieldName} must not be empty`;
     }
@@ -16,8 +16,7 @@ function validateUsernameOrName(value, fieldName, regex) {
     }
 
     if (!regex.test(trimmedValue)) {
-        // eslint-disable-next-line @stylistic/max-len
-        return `${fieldName} must only contain letters and numbers (lowercase only)`;
+        return `${fieldName} ${error}`;
     }
 
     return null;
@@ -77,8 +76,8 @@ function validateKey(value) {
 // Returns null if data is valid (no errors)
 // Returns an instance of "SignupError" if it isn't
 export default function validateSignup(jsonData) {
-    const usernameValid = validateUsernameOrName(jsonData.username, 'Username', /^[a-z0-9]+$/);
-    const nameValid = validateUsernameOrName(jsonData.name, 'Name', /^[A-Za-z0-9]+$/);
+    const usernameValid = validateUsernameOrName(jsonData.username, 'Username', /^[a-z0-9]+$/, 'must only contain letters and numbers (lowercase only)');
+    const nameValid = validateUsernameOrName(jsonData.name, 'Name', /^[A-Za-z0-9 ]+$/, 'must only contain letters and numbers');
     const passwordValid = validatePassword(jsonData.password);
     const cpasswordValid = validateCPassword(
         jsonData.cpassword,
@@ -96,7 +95,7 @@ export default function validateSignup(jsonData) {
 
     if (errorsPresent) {
         return new SignupError(
-            'Please fix the below errors',
+            'Please fix the below errors.',
             usernameValid,
             nameValid,
             passwordValid,
