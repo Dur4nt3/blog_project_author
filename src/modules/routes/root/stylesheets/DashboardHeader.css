@@ -1,0 +1,19 @@
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-header > .header-text > h1 {
+    font-size: var(--fs-lg);
+}
+
+.dashboard-header > .header-text > h2 {
+    font-size: var(--fs-sm);
+    font-weight: 400;
+}

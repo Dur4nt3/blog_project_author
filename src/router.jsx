@@ -6,6 +6,8 @@ import Signup from './modules/routes/root/Signup';
 import Error404 from './modules/routes/errors/Error404';
 
 import rootLoader from './modules/utilities/loaders/rootLoader';
+import loginLoader from './modules/utilities/loaders/loginLoader';
+
 import signupAction from './modules/utilities/actions/signupAction';
 import loginAction from './modules/utilities/actions/loginAction';
 
@@ -20,6 +22,7 @@ const router = createBrowserRouter([
         path: 'login',
         element: <Login />,
         errorElement: <Error404 />,
+        loader: loginLoader,
         action: loginAction,
     },
     {
