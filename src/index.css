@@ -30,13 +30,16 @@
     --error-text: #991818;
 
     --background-color: #fbfbfc;
+    --background-slight-contrast: #ffffff;
     --background-error: #fef2f2;
 
     --primary-color: #2563eb;
     --secondary-color: #e8eefc;
     --accent-color: #1e40af;
+    --misc-interactable-color: #314158;
 
     --separator-border: #d5dae3;
+    --darker-separator-border: #BAC1CC;
     --error-border: #dc2626;
     --valid-border: #00ba4d;
 
@@ -57,9 +60,15 @@ body {
 #root {
     min-height: 100svh;
 
+    padding: 0.5rem;
+
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+}
+
+#root:has(.author-form) {
+    align-items: center;
 }
 
 /* ######################### General Styles ######################### */

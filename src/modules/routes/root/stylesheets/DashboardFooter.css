@@ -1,0 +1,56 @@
+.dashboard-footer {
+    padding-top: 0.5rem;
+    margin-top: 1rem;
+
+    width: 100%;
+    max-width: 30rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    border-top: 1px solid var(--separator-border);
+
+    font-size: var(--fs-sm);
+    color: var(--dark-subtext);
+}
+
+.dashboard-footer > button {
+    font-weight: 600;
+    color: var(--misc-interactable-color);
+
+    cursor: pointer;
+
+    background-color: transparent;
+    border: none;
+    
+    transition: 0.2s ease-in-out;
+}
+
+.dashboard-footer > button:hover {
+    color: var(--primary-color)
+}
+
+@media (min-width: 40rem) {
+    .dashboard-footer {
+        max-width: 35rem;
+    }
+}
+
+@media (min-width: 48rem) {
+    .dashboard-footer {
+        max-width: 45rem;
+    }
+}
+
+@media (min-width: 64rem) {
+    .dashboard-footer {
+        max-width: 50rem;
+    }
+}
+
+@media (min-width: 80rem) {
+    .dashboard-footer {
+        max-width: 64rem;
+    }
+}
