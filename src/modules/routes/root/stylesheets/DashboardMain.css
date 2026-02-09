@@ -2,3 +2,60 @@
     flex-grow: 1;
     margin-top: 1.5rem;
 }
+
+.dashboard-main:has(.dashboard-error-cont) {
+    margin-top: 0;
+    display: grid;
+    place-items: center;
+}
+
+.dashboard-error-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.dashboard-error-cont > img {
+    width: 4rem;
+    height: 4rem;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-error-cont > h2 {
+    font-size: var(--fs-xxl);
+}
+
+.dashboard-error-cont > p:not(.error-in-depth) {
+    font-style: italic;
+    font-size: var(--fs-md);
+    margin-bottom: 1rem;
+}
+
+.dashboard-error-cont > .error-in-depth {
+    font-size: var(--fs-base);
+}
+
+.dashboard-error-cont > .error-in-depth > a {
+    color: var(--dark-text);
+    transition: 0.2s ease-in-out;
+}
+
+.dashboard-error-cont > .error-in-depth > a:hover {
+    text-decoration: none;
+}
+
+@media (min-width: 40rem) {
+    .dashboard-error-cont > img {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .dashboard-error-cont > h2 {
+        font-size: var(--fs-xxxl);
+    }
+
+    .dashboard-error-cont > p {
+        font-size: var(--fs-lg);
+    }
+}

@@ -8,9 +8,9 @@ import DashboardError from './DashboardError';
 import DashboardEmpty from './DashboardEmpty';
 import DashboardPopulated from './DashboardPopulated';
 
-function getMainContents(posts) {
-    if (posts === null || posts === undefined || typeof posts === 'number') {
-        return <DashboardError statusCode={posts} />;
+function getMainContents(response, posts) {
+    if (posts === null || posts === undefined) {
+        return <DashboardError statusCode={response} />;
     }
 
     if (posts.length === 0) {
@@ -21,14 +21,23 @@ function getMainContents(posts) {
 }
 
 export default function Root() {
-    const { posts, author } = useLoaderData();
+    const response = useLoaderData();
+
+    const posts =
+        typeof response === 'object' && response !== null
+            ? response.posts
+            : undefined;
+    const author =
+        typeof response === 'object' && response !== null
+            ? response.author
+            : undefined;
 
     console.log(posts, author);
 
     return (
         <>
-            <DashboardHeader />
-            <DashboardMain>{getMainContents(posts)}</DashboardMain>
+            {posts !== undefined && author !== undefined && <DashboardHeader />}
+            <DashboardMain>{getMainContents(response, posts)}</DashboardMain>
             <DashboardFooter name={author !== undefined ? author.name : null} />
         </>
     );
