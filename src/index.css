@@ -36,6 +36,7 @@
     --primary-color: #2563eb;
     --secondary-color: #e8eefc;
     --accent-color: #1e40af;
+    --misc-interactable-color: #314158;
 
     --separator-border: #d5dae3;
     --darker-separator-border: #BAC1CC;
@@ -63,6 +64,7 @@ body {
 
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 #root:has(.author-form) {

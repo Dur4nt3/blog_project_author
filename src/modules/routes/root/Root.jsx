@@ -32,8 +32,6 @@ export default function Root() {
             ? response.author
             : undefined;
 
-    console.log(posts, author);
-
     return (
         <>
             {posts !== undefined && author !== undefined && <DashboardHeader />}

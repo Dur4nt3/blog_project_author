@@ -10,6 +10,7 @@ import loginLoader from './modules/utilities/loaders/loginLoader';
 
 import signupAction from './modules/utilities/actions/signupAction';
 import loginAction from './modules/utilities/actions/loginAction';
+import deleteAction from './modules/utilities/actions/deleteAction';
 
 const router = createBrowserRouter([
     {
@@ -31,6 +32,14 @@ const router = createBrowserRouter([
         errorElement: <Error404 />,
         action: signupAction,
     },
+    {
+        // Solely for handling DELETE requests
+        // DO NOT ALLOW NAVIGATION OTHERWISE
+        path: 'delete/:postId',
+        element: <Error404 />,
+        errorElement: <Error404 />,
+        action: deleteAction,
+    }
 ]);
 
 export default router;

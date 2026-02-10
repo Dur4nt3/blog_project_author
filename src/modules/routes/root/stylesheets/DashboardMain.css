@@ -1,6 +1,9 @@
 .dashboard-main {
     flex-grow: 1;
     margin-top: 1.5rem;
+
+    width: 100%;
+    max-width: 30rem;
 }
 
 .dashboard-main:has(.dashboard-error-cont),
@@ -71,7 +74,8 @@
     font-size: var(--fs-base);
 }
 
-.empty-notice-action-cont {
+.empty-notice-action-cont,
+.new-article-cont {
     margin-top: 1rem;
     width: 100%;
     display: flex;
@@ -79,12 +83,14 @@
     gap: 0.5rem;
 }
 
-.empty-notice-action-cont > div {
+.empty-notice-action-cont > div,
+.new-article-cont > div {
     border-bottom: 1px solid var(--darker-separator-border);
     flex-grow: 1;
 }
 
-.dashboard-empty-notice a {
+.dashboard-empty-notice a,
+.new-article-cont > a {
     color: var(--dark-text);
     padding: 0.3rem 0.55rem;
     text-decoration: none;
@@ -96,12 +102,201 @@
     transition: 0.2s ease-in-out;
 }
 
-.dashboard-empty-notice a:hover {
+.dashboard-empty-notice a:hover,
+.new-article-cont > a:hover {
     background-color: var(--separator-border);
+}
+
+.dashboard-all-articles {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.all-article-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.article-card {
+    padding: 0.75rem;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+
+    background-color: var(--background-slight-contrast);
+    border-radius: 0.35rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.article-card .article-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow: hidden;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+
+
+    font-size: var(--fs-base);
+    font-weight: 500;
+}
+
+.article-card .article-date {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow: hidden;
+    line-clamp: 1;
+    -webkit-line-clamp: 1;
+    text-overflow: ellipsis;
+
+    color: var(--dark-subtext);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+
+    margin-bottom: 0.75rem;
+}
+
+.article-card .article-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: stretch;
+    gap: 0.5rem;
+}
+
+.article-card .article-actions > * {
+    font-size: var(--fs-base);
+    
+    padding: 0.15rem 0.3rem;
+    border: 1px solid transparent;
+    border-radius: 0.35rem;
+    outline: none;
+
+    cursor: pointer;
+
+    transition: 0.2s ease-in-out;
+}
+
+.article-card .article-actions a {
+    text-decoration: none;
+}
+
+.article-card .article-actions .view-article {
+    color: var(--misc-interactable-color);
+}
+
+.article-card .article-actions .view-article:hover,
+.article-card .article-actions .view-article:focus {
+    border: 1px solid var(--misc-interactable-color);
+}
+
+.article-card .article-actions .edit-article {
+    color: var(--primary-color);
+}
+
+.article-card .article-actions .edit-article:hover,
+.article-card .article-actions .edit-article:focus {
+    border: 1px solid var(--primary-color);
+}
+
+.article-card .article-actions > .delete-article {
+    color: var(--error-text);
+    background-color: transparent;
+}
+
+.article-card .article-actions .delete-article:hover,
+.article-card .article-actions .delete-article:focus {
+    border: 1px solid var(--error-text);
+}
+
+.deletion-modal-content,
+.deletion-modal-header {
+    background-color: var(--background-color);
+}
+
+.deletion-modal-title {
+    font-size: var(--fs-md);
+    font-weight: 600;
+}
+
+.deletion-modal-close-button {
+    color: var(--dark-text);
+}
+
+.deletion-modal-deleted-resource {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow: hidden;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    text-overflow: ellipsis;
+
+    color: var(--dark-text);
+    font-size: var(--fs-base);
+    text-align: center;
+}
+
+.deletion-modal-actions {
+    margin-top: 1.5rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: stretch;
+    gap: 0.75rem;
+}
+
+.deletion-modal-actions button {
+    cursor: pointer;
+    padding: 0.15rem 0.3rem;
+
+    border-radius: 0.35rem;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+
+    font-size: var(--fs-base);
+
+    transition: 0.2s ease-in-out;
+}
+
+.deletion-modal-actions button:hover {
+    transform: translateY(-0.15rem);
+}
+
+.deletion-modal-actions button:focus {
+    outline: 2px solid var(--dark-text);
+}
+
+.deletion-modal-delete-button {
+    width: 100%;
+    border: none;
+    background-color: var(--error-text);
+    color: var(--light-text);
+}
+
+.deletion-modal-cancel-button {
+    width: 100%;
+    border: none;
+    background-color: var(--misc-interactable-color);
+    color: var(--light-text);
 }
 
 
 @media (min-width: 40rem) {
+    .dashboard-main {
+        max-width: 35rem;
+    }
+
     .dashboard-error-cont > img {
         width: 6rem;
         height: 6rem;
@@ -113,5 +308,40 @@
 
     .dashboard-error-cont > p {
         font-size: var(--fs-lg);
+    }
+}
+
+@media (min-width: 48rem) {
+    .dashboard-main {
+        max-width: 45rem;
+    }
+
+    .article-card {
+        padding: 1rem;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .article-card .article-title,
+    .article-card .article-date {
+        text-align: left;
+    }
+
+    .article-card .article-date {
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 64rem) {
+    .dashboard-main {
+        max-width: 50rem;
+    }
+}
+
+@media (min-width: 80rem) {
+    .dashboard-main {
+        max-width: 64rem;
     }
 }
