@@ -5,7 +5,7 @@ import './stylesheets/DashboardFooter.css';
 export default function DashboardFooter({ name }) {
     return (
         <footer className='dashboard-footer'>
-            <p>@ {name}</p>
+            <p>@ {typeof name === 'string' ? name : 'Unknown'}</p>
             <Link to='/logout'>Logout</Link>
         </footer>
     );

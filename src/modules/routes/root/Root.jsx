@@ -36,7 +36,9 @@ export default function Root() {
         <>
             {posts !== undefined && author !== undefined && <DashboardHeader />}
             <DashboardMain>{getMainContents(response, posts)}</DashboardMain>
-            <DashboardFooter name={author !== undefined ? author.name : null} />
+            {posts !== undefined && author !== undefined && (
+                <DashboardFooter name={author.name} />
+            )}
         </>
     );
 }
