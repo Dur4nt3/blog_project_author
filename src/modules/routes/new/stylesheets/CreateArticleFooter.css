@@ -1,0 +1,32 @@
+
+/* NOTE: SOME MEDIA QUERIES ARE DEFINED IN /src/modules/routes/root/stylesheets/DashboardFooter.css */
+
+.create-article-footer {
+    width: 100%;
+}
+
+.create-article-footer > .dashboard-link {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+    text-decoration: none;
+}
+
+.create-article-footer > .dashboard-link > img {
+    width: 18px;
+    height: 18px;
+}
+
+.create-article-footer > .dashboard-link:hover > img {
+    filter: brightness(0) saturate(100%) invert(8%) sepia(7%) saturate(6310%) hue-rotate(188deg) brightness(95%) contrast(96%);
+}
+
+.create-article-footer > .dashboard-link > p {
+    font-weight: 500;
+    font-size: var(--fs-sm);
+    color: var(--misc-subtext);
+}
+
+.create-article-footer > .dashboard-link:hover > p {
+    color: var(--dark-text);
+}

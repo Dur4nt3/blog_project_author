@@ -32,13 +32,17 @@ export default function Root() {
             ? response.author
             : undefined;
 
+    if (posts === undefined && author === undefined) {
+        return (
+            <DashboardMain>{getMainContents(response, posts)}</DashboardMain>
+        );
+    }
+
     return (
         <>
-            {posts !== undefined && author !== undefined && <DashboardHeader />}
+            <DashboardHeader />
             <DashboardMain>{getMainContents(response, posts)}</DashboardMain>
-            {posts !== undefined && author !== undefined && (
-                <DashboardFooter name={author.name} />
-            )}
+            <DashboardFooter name={author.name} />
         </>
     );
 }

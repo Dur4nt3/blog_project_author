@@ -349,7 +349,8 @@
 }
 
 @media (min-width: 40rem) {
-    .dashboard-main {
+    .dashboard-main,
+    .create-article-main {
         max-width: 35rem;
     }
 
@@ -359,7 +360,8 @@
 }
 
 @media (min-width: 48rem) {
-    .dashboard-main {
+    .dashboard-main,
+    .create-article-main {
         max-width: 45rem;
     }
 
@@ -382,13 +384,15 @@
 }
 
 @media (min-width: 64rem) {
-    .dashboard-main {
+    .dashboard-main,
+    .create-article-main {
         max-width: 50rem;
     }
 }
 
 @media (min-width: 80rem) {
-    .dashboard-main {
+    .dashboard-main,
+    .create-article-main {
         max-width: 64rem;
     }
 }
