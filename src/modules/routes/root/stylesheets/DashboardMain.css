@@ -1,4 +1,5 @@
-.dashboard-main {
+.dashboard-main,
+.create-article-main {
     flex-grow: 1;
     margin-top: 1.5rem;
 
@@ -7,47 +8,82 @@
 }
 
 .dashboard-main:has(.dashboard-error-cont),
-.dashboard-main:has(.dashboard-empty-notice) {
+.dashboard-main:has(.dashboard-empty-notice),
+.create-article-main:has(.create-article-error-cont) {
     margin-top: 0;
     display: grid;
     place-items: center;
 }
 
-.dashboard-error-cont {
+.dashboard-error-cont,
+.error-404-cont,
+.create-article-error-cont {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
 
-.dashboard-error-cont > h1 {
+.dashboard-error-cont > h1,
+.error-404-cont > h1,
+.create-article-error-cont > h1 {
     font-size: var(--fs-xxxl);
     line-height: 1;
     margin-bottom: 0.25rem;
 }
 
-.dashboard-error-cont > h2 {
+.dashboard-error-cont > h2,
+.error-404-cont > h2,
+.create-article-error-cont > h2 {
     line-height: 1;
     font-size: var(--fs-xxl);
     margin-bottom: 0.75rem;
 }
 
-.dashboard-error-cont > p:not(.error-in-depth) {
+.dashboard-error-cont > p:not(.error-in-depth),
+.error-404-cont > p:not(.error-in-depth),
+.create-article-error-cont > p:not(.error-in-depth) {
     font-style: italic;
     font-size: var(--fs-md);
     margin-bottom: 1rem;
 }
 
-.dashboard-error-cont > .error-in-depth {
+.dashboard-error-cont > .error-in-depth,
+.create-article-error-cont > .error-in-depth {
     font-size: var(--fs-base);
 }
 
-.dashboard-error-cont > .error-in-depth > a {
+.dashboard-error-cont > .error-in-depth:not(:last-child),
+.create-article-error-cont > .error-in-depth:not(:last-child) {
+    margin-bottom: 0.75rem;
+}
+
+.dashboard-error-cont > .error-in-depth > form > button,
+.create-article-error-cont > .error-in-depth > form > button {
+    padding: 0;
+    color: var(--dark-text);
+    transition: 0.2s ease-in-out;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+.dashboard-error-cont > .error-in-depth> form > button:hover,
+.create-article-error-cont > .error-in-depth > form > button:hover {
+    text-decoration: none;
+}
+
+.dashboard-error-cont > .error-in-depth > a,
+.error-404-cont a,
+.create-article-error-cont a {
     color: var(--dark-text);
     transition: 0.2s ease-in-out;
 }
 
-.dashboard-error-cont > .error-in-depth > a:hover {
+.dashboard-error-cont > .error-in-depth > a:hover,
+.error-404-cont a:hover,
+.create-article-error-cont a:hover {
     text-decoration: none;
 }
 
@@ -297,6 +333,12 @@
     border: none;
     background-color: var(--error-text);
     color: var(--light-text);
+}
+
+.logout-modal-logout-button {
+    display: grid;
+    place-items: center;
+    height: calc(1lh + 0.15rem * 2);
 }
 
 .deletion-modal-cancel-button {

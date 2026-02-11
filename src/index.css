@@ -27,6 +27,7 @@
     --dark-text: #0f172a;
     --light-text: #fbfbfc;
     --dark-subtext: rgb(15 23 42 / 60%);
+    --misc-subtext: #45556c;
     --error-text: #991818;
 
     --background-color: #fbfbfc;
@@ -69,6 +70,11 @@ body {
 
 #root:has(.author-form) {
     align-items: center;
+}
+
+#root:has(.error-404-cont) {
+    display: grid;
+    place-items: center;
 }
 
 /* ######################### General Styles ######################### */
@@ -192,8 +198,12 @@ body {
     margin-top: 1.5rem;
 
     padding: 0.35rem 0.85rem;
+    
     border-radius: 0.35rem;
     border: none;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+
     background-color: var(--dark-text);
     color: var(--light-text);
     font-weight: 500;
@@ -213,6 +223,10 @@ body {
 
 .author-form button:not(.popover-target-button):hover {
     background-color: var(--hover-dark-darker);
+}
+
+.author-form button:not(.popover-target-button):focus {
+    outline: 2px solid var(--dark-text);
 }
 
 @media (min-width: 40rem) {

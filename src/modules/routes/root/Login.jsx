@@ -1,7 +1,3 @@
-import './stylesheets/Login.css';
-
-import './stylesheets/Signup.css';
-
 import { useFetcher, Link } from 'react-router';
 
 import FormLevelError from './FormLevelError';
@@ -12,7 +8,7 @@ export default function Login() {
     const fetcher = useFetcher();
 
     return (
-        <fetcher.Form method='POST' className='author-form signup-form'>
+        <fetcher.Form method='POST' className='author-form login-form'>
             <h1 className='form-heading'>Log in</h1>
             <p className='form-description'>
                 Log in to manage and publish articles.
