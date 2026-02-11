@@ -220,20 +220,25 @@
 }
 
 .deletion-modal-content,
-.deletion-modal-header {
+.deletion-modal-header,
+.logout-modal-content,
+.logout-modal-header {
     background-color: var(--background-color);
 }
 
-.deletion-modal-title {
+.deletion-modal-title,
+.logout-modal-title {
     font-size: var(--fs-md);
     font-weight: 600;
 }
 
-.deletion-modal-close-button {
+.deletion-modal-close-button,
+.logout-modal-close-button {
     color: var(--dark-text);
 }
 
-.deletion-modal-deleted-resource {
+.deletion-modal-deleted-resource,
+.logout-modal-notice {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     max-width: 100%;
@@ -257,7 +262,13 @@
     gap: 0.75rem;
 }
 
-.deletion-modal-actions button {
+.logout-modal-actions {
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.deletion-modal-actions button,
+.logout-modal-actions button {
     cursor: pointer;
     padding: 0.15rem 0.3rem;
 
@@ -270,15 +281,18 @@
     transition: 0.2s ease-in-out;
 }
 
-.deletion-modal-actions button:hover {
+.deletion-modal-actions button:hover,
+.logout-modal-actions button:hover {
     transform: translateY(-0.15rem);
 }
 
-.deletion-modal-actions button:focus {
+.deletion-modal-actions button:focus,
+.logout-modal-actions button:focus {
     outline: 2px solid var(--dark-text);
 }
 
-.deletion-modal-delete-button {
+.deletion-modal-delete-button,
+.logout-modal-logout-button {
     width: 100%;
     border: none;
     background-color: var(--error-text);

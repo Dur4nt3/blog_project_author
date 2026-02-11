@@ -15,15 +15,19 @@
     color: var(--dark-subtext);
 }
 
-.dashboard-footer > a {
+.dashboard-footer > button {
     font-weight: 600;
     color: var(--misc-interactable-color);
-    text-decoration: none;
 
+    cursor: pointer;
+
+    background-color: transparent;
+    border: none;
+    
     transition: 0.2s ease-in-out;
 }
 
-.dashboard-footer > a:hover {
+.dashboard-footer > button:hover {
     color: var(--primary-color)
 }
 
