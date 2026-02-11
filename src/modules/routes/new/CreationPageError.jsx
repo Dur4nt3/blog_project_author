@@ -1,6 +1,6 @@
 import { useFetcher } from 'react-router';
 
-function DashboardErrorContent({statusCode}) {
+function CreationPageErrorContent({statusCode}) {
     // eslint-disable-next-line no-unused-vars
     const fetcher = useFetcher();
 
@@ -53,10 +53,11 @@ function DashboardErrorContent({statusCode}) {
     );
 }
 
-export default function DashboardError({ statusCode }) {
+
+export default function CreationPageError({ response }) {
     return (
-        <div className='dashboard-error-cont'>
-            <DashboardErrorContent statusCode={statusCode} />
+        <div className='create-article-error-cont'>
+            <CreationPageErrorContent statusCode={response} />
         </div>
     );
 }

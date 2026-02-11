@@ -3,6 +3,8 @@ import { Modal } from '@mantine/core';
 import { useEffect } from 'react';
 import { useFetcher } from 'react-router';
 
+import FormLoader from './FormLoader';
+
 const modalClasses = {
     content: 'logout-modal-content',
     header: 'logout-modal-header',
@@ -36,7 +38,7 @@ export default function LogoutModal({ opened, close }) {
                             className='logout-modal-logout-button'
                             type='submit'
                         >
-                            Logout
+                            {fetcher.state === 'idle' ? 'Logout' : <FormLoader />}
                         </button>
                     </fetcher.Form>
                 </div>

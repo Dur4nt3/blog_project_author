@@ -1,0 +1,302 @@
+/* NOTE: VARIOUS SELECTORS ARE INCLUDED IN /src/modules/routes/root/stylesheets/DashboardMain.css */
+
+.create-article-form {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+.create-article-form-actions {
+    max-width: max-content;
+
+    margin-top: 2rem;
+    margin-left: auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+.create-article-form-actions > button {
+    padding: 0.35rem 1.15rem;
+
+    border-radius: 0.35rem;
+    border: none;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    display: grid;
+    place-items: center;
+
+    font-size: var(--fs-base);
+
+    height: calc(1lh + 0.35rem * 2);
+
+    transition: 0.2s ease-in-out;
+}
+
+.create-article-form-actions > .preview-article {
+    background-color: var(--background-slight-contrast);
+    border: 1px solid var(--darker-separator-border);
+    color: var(--dark-text);
+}
+
+.create-article-form-actions > .preview-article:hover {
+    background-color: var(--secondary-color);
+}
+
+.create-article-form-actions > .create-article {
+    background-color: var(--accent-color);
+    color: var(--light-text);
+}
+
+.create-article-form-actions > .create-article:hover {
+    background-color: var(--hover-accent-lighter);
+}
+
+.article-modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.article-modal-header {
+    width: 100%;
+}
+
+.article-modal-body {
+    width: 100%;
+    max-width: 30rem;
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.article-modal-article-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow: hidden;
+    line-clamp: 6;
+    -webkit-line-clamp: 6;
+    text-overflow: ellipsis;
+
+    font-size: var(--fs-xxl);
+    font-weight: 500;
+
+    margin-bottom: 1rem;
+}
+
+.article-modal-article-description {
+    word-wrap: break-word;
+    font-size: var(--fs-md);
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+}
+
+.article-modal-article-author {
+    word-wrap: break-word;
+    font-size: var(--fs-base);
+    color: var(--darker-subtext);
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    text-align: end;
+
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--darker-separator-border);
+}
+
+.article-modal-body > .article-modal-markdown-content {
+    flex-grow: 1;
+}
+
+.article-modal-markdown-content h1,
+.article-modal-markdown-content h2,
+.article-modal-markdown-content h3,
+.article-modal-markdown-content h4,
+.article-modal-markdown-content h5,
+.article-modal-markdown-content h6,
+.article-modal-markdown-content p {
+    word-wrap: break-word;
+}
+
+.article-modal-markdown-content h1 {
+    font-size: var(--fs-xl);
+    font-weight: 500;
+    margin: 1.5rem 0;
+}
+
+.article-modal-markdown-content h2 {
+    font-size: var(--fs-lg);
+    font-weight: 500;
+    margin: 1.25rem 0;
+}
+
+.article-modal-markdown-content h3 {
+    font-size: var(--fs-md);
+    font-weight: 500;
+    margin: 1rem 0;
+}
+
+.article-modal-markdown-content h4 {
+    font-size: var(--fs-base);
+    font-weight: 400;
+    margin: 0.75rem 0;
+}
+
+.article-modal-markdown-content h5,
+.article-modal-markdown-content h6 {
+    font-size: var(--fs-sm);
+    font-weight: 300;
+    margin: 0.5rem 0;
+}
+
+.article-modal-markdown-content p {
+    margin: 0.5rem 0;
+}
+
+.article-modal-markdown-content ul,
+.article-modal-markdown-content ol {
+    list-style-position: inside;
+    padding: 0;
+    padding-left: 0.75rem;
+
+    margin: 1rem 0;
+}
+
+.article-modal-markdown-content li {
+    margin: 0.75rem 0;
+}
+
+.article-modal-markdown-content blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    border-left: 3px solid var(--darker-separator-border);
+    background: var(--background-blockquote);
+    font-style: italic;
+}
+
+.article-modal-markdown-content strong {
+    font-weight: 700;
+}
+
+.article-modal-markdown-content em {
+    font-style: italic;
+}
+
+.article-modal-markdown-content code {
+    font-family: monospace;
+    font-size: var(--fs-base);
+    background: var(--lighter-separator-border);
+    padding: 0.2rem;
+    border-radius: 0.15rem;
+}
+
+.article-modal-markdown-content pre {
+    background: var(--dark-text);
+    color: var(--light-text);
+    padding: 1.25rem;
+    border-radius: 0;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+.article-modal-markdown-content pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+    font-size: var(--fs-base);
+}
+
+.article-modal-markdown-content hr {
+    border: none;
+    border-top: 1px solid var(--darker-separator-border);
+    margin: 1.5rem 0;
+}
+
+.article-modal-markdown-content a {
+    color: var(--primary-color);
+    text-decoration: underline;
+    transition: 0.2s ease-in-out;
+}
+
+.article-modal-markdown-content a:hover {
+    text-decoration: none;
+}
+
+.article-modal-markdown-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+}
+
+.article-modal-markdown-content .md-break {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.article-modal-body > button {
+    margin-top: 1rem;
+
+    padding: 0.35rem 0.85rem;
+
+    border-radius: 0.35rem;
+    border: none;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+
+    background-color: var(--dark-text);
+    color: var(--light-text);
+    font-weight: 500;
+    width: 100%;
+    align-self: center;
+    max-width: 15rem;
+
+    cursor: pointer;
+
+    font-size: var(--fs-base);
+
+    height: calc(1lh + 0.35rem * 2);
+
+    transition: 0.2s ease-in-out;
+}
+
+.article-modal-body > button:hover {
+    background-color: var(--hover-dark-darker);
+}
+
+@media (min-width: 40rem) {
+    .article-modal-body {
+        max-width: 35rem;
+    }
+
+    .article-modal-article-author {
+        font-size: var(--fs-sm);
+    }
+}
+
+@media (min-width: 48rem) {
+    .article-modal-body {
+        max-width: 45rem;
+    }
+}
+
+@media (min-width: 64rem) {
+    .article-modal-body {
+        max-width: 50rem;
+    }
+}
+
+@media (min-width: 80rem) {
+    .article-modal-body {
+        max-width: 64rem;
+    }
+}

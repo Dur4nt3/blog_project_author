@@ -27,10 +27,13 @@
     --dark-text: #0f172a;
     --light-text: #fbfbfc;
     --dark-subtext: rgb(15 23 42 / 60%);
+    --darker-subtext: rgb(15 23 42 / 80%);
+    --misc-subtext: #45556c;
     --error-text: #991818;
 
     --background-color: #fbfbfc;
     --background-slight-contrast: #ffffff;
+    --background-blockquote: #f3f4f6;
     --background-error: #fef2f2;
 
     --primary-color: #2563eb;
@@ -38,11 +41,13 @@
     --accent-color: #1e40af;
     --misc-interactable-color: #314158;
 
+    --lighter-separator-border: #E1E5ED;
     --separator-border: #d5dae3;
-    --darker-separator-border: #BAC1CC;
+    --darker-separator-border: #bac1cc;
     --error-border: #dc2626;
     --valid-border: #00ba4d;
 
+    --hover-accent-lighter: #274fcc;
     --hover-dark-darker: #070c17;
 
     --shadow-sm: 0 0 5px 1px rgb(0 0 0 / 0.18), 0 0 2px 0 rgb(0 0 0 / 0.14);
@@ -69,6 +74,11 @@ body {
 
 #root:has(.author-form) {
     align-items: center;
+}
+
+#root:has(.error-404-cont) {
+    display: grid;
+    place-items: center;
 }
 
 /* ######################### General Styles ######################### */
@@ -129,26 +139,41 @@ body {
     gap: 0.5rem;
 }
 
-.form-row > input {
+.form-row > input,
+.form-row > textarea {
     padding: 0.35rem 0.6rem;
     background-color: transparent;
     caret-color: var(--dark-text);
 
     outline: none;
-    border: 1px solid var(--separator-border);
+    border: 1px solid var(--darker-separator-border);
     border-radius: 0.35rem;
 
     transition: 0.2s ease-in-out;
 }
 
-.form-row > input:focus {
+.form-row > textarea {
+    resize: vertical;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 60vh;
+}
+
+.form-row.short-text-area > textarea {
+    min-height: 10lh;
+}
+
+.form-row > input:focus,
+.form-row > textarea:focus {
     border: 1px solid var(--primary-color);
 }
 
-.form-row > input.has-error:focus {
+.form-row > input.has-error:focus,
+.form-row > textarea.has-error:focus {
     border: 1px solid var(--error-border);
 }
 
+.form-row > input.is-valid:focus,
 .form-row > input.is-valid:focus {
     border: 1px solid var(--valid-border);
 }
@@ -184,6 +209,23 @@ body {
     max-width: 240px;
 }
 
+.popover-row {
+    display: block;
+}
+
+.popover-row:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+.popover-row > a {
+    color: var(--light-text);
+    transition: 0.2s ease-in-out;
+}
+
+.popover-row > a:hover {
+    text-decoration: none;
+}
+
 .popover-dropdown-container {
     background-color: var(--dark-text);
 }
@@ -192,8 +234,12 @@ body {
     margin-top: 1.5rem;
 
     padding: 0.35rem 0.85rem;
+
     border-radius: 0.35rem;
     border: none;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+
     background-color: var(--dark-text);
     color: var(--light-text);
     font-weight: 500;
@@ -215,13 +261,33 @@ body {
     background-color: var(--hover-dark-darker);
 }
 
+.author-form button:not(.popover-target-button):focus {
+    outline: 2px solid var(--dark-text);
+}
+
 @media (min-width: 40rem) {
     .author-form {
         width: 420px;
     }
 
+    .form-row.short-text-area > textarea {
+        min-height: 6lh;
+    }
+
     .popover-dropdown-text {
         max-width: 320px;
+    }
+}
+
+@media (min-width: 48rem) {
+    .form-row.short-text-area > textarea {
+        min-height: 5lh;
+    }
+}
+
+@media (min-width: 64rem) {
+    .form-row.short-text-area > textarea {
+        min-height: 4lh;
     }
 }
 

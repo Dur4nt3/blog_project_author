@@ -32,25 +32,29 @@
 }
 
 @media (min-width: 40rem) {
-    .dashboard-footer {
+    .dashboard-footer,
+    .create-article-footer {
         max-width: 35rem;
     }
 }
 
 @media (min-width: 48rem) {
-    .dashboard-footer {
+    .dashboard-footer,
+    .create-article-footer {
         max-width: 45rem;
     }
 }
 
 @media (min-width: 64rem) {
-    .dashboard-footer {
+    .dashboard-footer,
+    .create-article-footer {
         max-width: 50rem;
     }
 }
 
 @media (min-width: 80rem) {
-    .dashboard-footer {
+    .dashboard-footer,
+    .create-article-footer {
         max-width: 64rem;
     }
 }

@@ -1,24 +1,24 @@
 import { redirect } from 'react-router';
-import validateSignup from '../validation/validateSignup';
+import ArticleError from '../classes/ArticleError';
+import validateArticle from '../validation/validateArticle';
 import getErrorsObject from '../validation/getErrorsObject';
-import SignupError from '../classes/SignupError';
 
-function formatSignupResults(results, status) {
+function formatCreateArticleResults(results, status) {
     if (results.success === true) {
         return true;
     }
 
-    const serverError = new SignupError(
+    const serverError = new ArticleError(
         'Could not process your request, try again later.',
-        null,
-        null,
         null,
         null,
         null
     );
 
     // success isn't true but there are no errors?
-    // most likely a server-side error
+    // this can mean either: 401, 403, or 500
+    // in the case of 401 and 403, suspect tempering by the user
+    // return 500 anyways
     if (results.errors === undefined || status === 500) {
         return serverError;
     }
@@ -32,29 +32,24 @@ function formatSignupResults(results, status) {
         return serverError;
     }
 
-    return new SignupError(
+    return new ArticleError(
         'Please fix the below errors.',
-        errorsObject.username,
-        errorsObject.name,
-        errorsObject.password,
-        errorsObject.cpassword,
-        errorsObject.role
+        errorsObject.title,
+        errorsObject.description,
+        errorsObject.body
     );
 }
 
-export default async function signupAction({ request }) {
+export default async function newAction({ request }) {
     const data = await request.formData();
     const jsonData = Object.fromEntries(data);
 
-    const clientValidation = validateSignup(jsonData);
+    const clientValidation = validateArticle(jsonData);
     if (clientValidation !== null) {
         return { errors: clientValidation };
     }
 
-    // Add the author role
-    jsonData.role = 'author';
-
-    const serverUrl = `${import.meta.env.VITE_API_URL}/users`;
+    const serverUrl = `${import.meta.env.VITE_API_URL}/posts`;
 
     const response = await fetch(serverUrl, {
         method: 'POST',
@@ -67,10 +62,13 @@ export default async function signupAction({ request }) {
 
     const results = await response.json();
 
-    const formattedResults = formatSignupResults(results, response.status);
+    const formattedResults = formatCreateArticleResults(
+        results,
+        response.status
+    );
 
     if (formattedResults === true) {
-        return redirect('/login');
+        return redirect('/');
     }
 
     return { errors: formattedResults };
