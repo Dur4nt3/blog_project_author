@@ -18,7 +18,7 @@ export default function CreateArticle() {
     return <>
         <CreateArticleHeader />
         <CreateArticleMain>
-            <p>placeholder</p>
+            <CreateArticleForm />
         </CreateArticleMain>
         <CreateArticleFooter />
     </>

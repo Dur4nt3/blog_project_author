@@ -44,6 +44,7 @@
     --error-border: #dc2626;
     --valid-border: #00ba4d;
 
+    --hover-accent-lighter: #274fcc;
     --hover-dark-darker: #070c17;
 
     --shadow-sm: 0 0 5px 1px rgb(0 0 0 / 0.18), 0 0 2px 0 rgb(0 0 0 / 0.14);
@@ -135,26 +136,37 @@ body {
     gap: 0.5rem;
 }
 
-.form-row > input {
+.form-row > input,
+.form-row > textarea {
     padding: 0.35rem 0.6rem;
     background-color: transparent;
     caret-color: var(--dark-text);
 
     outline: none;
-    border: 1px solid var(--separator-border);
+    border: 1px solid var(--darker-separator-border);
     border-radius: 0.35rem;
 
     transition: 0.2s ease-in-out;
 }
 
-.form-row > input:focus {
+.form-row > textarea {
+    resize: vertical;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 60vh;
+}
+
+.form-row > input:focus,
+.form-row > textarea:focus {
     border: 1px solid var(--primary-color);
 }
 
-.form-row > input.has-error:focus {
+.form-row > input.has-error:focus,
+.form-row > textarea.has-error:focus {
     border: 1px solid var(--error-border);
 }
 
+.form-row > input.is-valid:focus,
 .form-row > input.is-valid:focus {
     border: 1px solid var(--valid-border);
 }
@@ -188,6 +200,10 @@ body {
     font-size: var(--fs-sm);
     color: var(--light-text);
     max-width: 240px;
+}
+
+.popover-row {
+    display: block;
 }
 
 .popover-dropdown-container {
