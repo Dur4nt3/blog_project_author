@@ -40,7 +40,7 @@
     --misc-interactable-color: #314158;
 
     --separator-border: #d5dae3;
-    --darker-separator-border: #BAC1CC;
+    --darker-separator-border: #bac1cc;
     --error-border: #dc2626;
     --valid-border: #00ba4d;
 
@@ -206,6 +206,19 @@ body {
     display: block;
 }
 
+.popover-row:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+.popover-row > a {
+    color: var(--light-text);
+    transition: 0.2s ease-in-out;
+}
+
+.popover-row > a:hover {
+    text-decoration: none;
+}
+
 .popover-dropdown-container {
     background-color: var(--dark-text);
 }
@@ -214,7 +227,7 @@ body {
     margin-top: 1.5rem;
 
     padding: 0.35rem 0.85rem;
-    
+
     border-radius: 0.35rem;
     border: none;
     outline: 2px solid transparent;

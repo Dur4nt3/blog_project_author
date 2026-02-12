@@ -258,18 +258,22 @@
 .deletion-modal-content,
 .deletion-modal-header,
 .logout-modal-content,
-.logout-modal-header {
+.logout-modal-header,
+.article-modal-header,
+.article-modal-content {
     background-color: var(--background-color);
 }
 
 .deletion-modal-title,
-.logout-modal-title {
+.logout-modal-title,
+.article-modal-title {
     font-size: var(--fs-md);
     font-weight: 600;
 }
 
 .deletion-modal-close-button,
-.logout-modal-close-button {
+.logout-modal-close-button,
+.article-modal-close-button {
     color: var(--dark-text);
 }
 

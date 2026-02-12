@@ -1,5 +1,8 @@
+import { useRef } from 'react';
 import { useFetcher } from 'react-router';
+import { useDisclosure } from '@mantine/hooks';
 
+import PreviewArticleModal from '../../utilities/miscUI/PreviewArticleModal';
 import HelpPopover from '../../utilities/miscUI/HelpPopover';
 import FormLoader from '../../utilities/miscUI/FormLoader';
 
@@ -25,8 +28,15 @@ function BodyPopoverContent() {
     return (
         <>
             <span className='popover-row'>
-                The contents of your article, markdown used here will be parsed
-                in the published article.
+                The contents of your article, markdown can be used here to
+                format you article.
+            </span>
+            <span className='popover-row'>
+                The markdown specification used here is{' '}
+                <a href='https://commonmark.org/' rel='noreferrer noopener'>
+                    CommonMark
+                </a>
+                .
             </span>
             <span className='popover-row'>
                 Note: Requires a minimum of 500 characters and has a maximum of
@@ -38,13 +48,24 @@ function BodyPopoverContent() {
 
 export default function CreateArticleForm() {
     const fetcher = useFetcher();
+    const formRef = useRef();
+
+    const [opened, { open, close }] = useDisclosure();
 
     return (
         <fetcher.Form
             method='POST'
             action='/new'
             className='create-article-form'
+            ref={formRef}
         >
+            <PreviewArticleModal
+                title={new FormData(formRef.current).get('title')}
+                body={new FormData(formRef.current).get('body')}
+                opened={opened}
+                close={close}
+            />
+
             <FormRow
                 labelContent={
                     <>
@@ -69,9 +90,17 @@ export default function CreateArticleForm() {
                 error={fetcher.data?.errors !== undefined ? true : undefined}
             />
 
-            <div className="create-article-form-actions">
-                <button className='preview-article' type='button'>Preview</button>
-                <button className='create-article' type='submit'>{fetcher.state === 'idle' ? 'Publish' : <FormLoader />}</button>
+            <div className='create-article-form-actions'>
+                <button
+                    className='preview-article'
+                    type='button'
+                    onClick={open}
+                >
+                    Preview
+                </button>
+                <button className='create-article' type='submit'>
+                    {fetcher.state === 'idle' ? 'Publish' : <FormLoader />}
+                </button>
             </div>
         </fetcher.Form>
     );
