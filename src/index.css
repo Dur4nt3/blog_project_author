@@ -27,11 +27,13 @@
     --dark-text: #0f172a;
     --light-text: #fbfbfc;
     --dark-subtext: rgb(15 23 42 / 60%);
+    --darker-subtext: rgb(15 23 42 / 80%);
     --misc-subtext: #45556c;
     --error-text: #991818;
 
     --background-color: #fbfbfc;
     --background-slight-contrast: #ffffff;
+    --background-blockquote: #f3f4f6;
     --background-error: #fef2f2;
 
     --primary-color: #2563eb;
@@ -39,6 +41,7 @@
     --accent-color: #1e40af;
     --misc-interactable-color: #314158;
 
+    --lighter-separator-border: #E1E5ED;
     --separator-border: #d5dae3;
     --darker-separator-border: #bac1cc;
     --error-border: #dc2626;

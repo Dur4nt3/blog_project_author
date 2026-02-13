@@ -24,7 +24,9 @@ export default function PreviewArticleModal({ title, body, opened, close }) {
             >
                 <h2 className='article-modal-article-title'>{title}</h2>
                 <div className="article-modal-markdown-content">
-                    <Markdown>{body}</Markdown>
+                    <Markdown components={{
+                        br: () => <span className='md-break'></span>
+                    }}>{body}</Markdown>
                 </div>
                 <button type='button' onClick={close}>End Preview</button>
             </Modal>
