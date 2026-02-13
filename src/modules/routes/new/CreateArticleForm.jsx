@@ -6,6 +6,7 @@ import PreviewArticleModal from '../../utilities/miscUI/PreviewArticleModal';
 import HelpPopover from '../../utilities/miscUI/HelpPopover';
 import FormLoader from '../../utilities/miscUI/FormLoader';
 
+import FormLevelError from '../root/FormLevelError';
 import FormRow from '../root/FormRow';
 import FormRowTextArea from '../root/FormRowTextArea';
 
@@ -17,8 +18,7 @@ function TitlePopoverContent() {
                 characters.
             </span>
             <span className='popover-row'>
-                Note: Requires a minimum of 20 characters and has a maximum of
-                70.
+                Requires a minimum of 10 characters and has a maximum of 70.
             </span>
         </>
     );
@@ -39,8 +39,15 @@ function BodyPopoverContent() {
                 .
             </span>
             <span className='popover-row'>
-                Note: Requires a minimum of 500 characters and has a maximum of
-                10000 characters.
+                Requires a minimum of 500 characters and has a maximum of 10000
+                characters.
+            </span>
+
+            <span className='popover-row'>
+                Note: I suggest using a dedicated markdown editor (VSCode, or an
+                online solution) to write your article in. Use this input solely
+                to paste your finished article in, preview it, and perform minor
+                tweaks on it.
             </span>
         </>
     );
@@ -51,6 +58,8 @@ export default function CreateArticleForm() {
     const formRef = useRef();
 
     const [opened, { open, close }] = useDisclosure();
+
+    console.log(fetcher.data?.errors);
 
     return (
         <fetcher.Form
@@ -66,6 +75,11 @@ export default function CreateArticleForm() {
                 close={close}
             />
 
+            {fetcher.data?.errors?.formLevel !== null &&
+                fetcher.data?.errors?.formLevel !== undefined && (
+                    <FormLevelError errorText={fetcher.data.errors.formLevel} />
+                )}
+
             <FormRow
                 labelContent={
                     <>
@@ -75,7 +89,7 @@ export default function CreateArticleForm() {
                 }
                 inputType='text'
                 fieldName='title'
-                error={fetcher.data?.errors !== undefined ? true : undefined}
+                error={fetcher.data?.errors?.title}
             />
 
             <FormRowTextArea
@@ -87,7 +101,7 @@ export default function CreateArticleForm() {
                 }
                 inputType='text'
                 fieldName='body'
-                error={fetcher.data?.errors !== undefined ? true : undefined}
+                error={fetcher.data?.errors?.body}
             />
 
             <div className='create-article-form-actions'>

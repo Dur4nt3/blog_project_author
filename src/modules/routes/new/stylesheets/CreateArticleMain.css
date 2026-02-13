@@ -40,6 +40,7 @@
 .create-article-form-actions > .preview-article {
     background-color: var(--background-slight-contrast);
     border: 1px solid var(--darker-separator-border);
+    color: var(--dark-text);
 }
 
 .create-article-form-actions > .preview-article:hover {
