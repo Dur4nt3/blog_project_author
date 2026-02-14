@@ -1,18 +1,24 @@
 import ArticleError from '../classes/ArticleError';
 
-function validateTitle(title) {
-    if (title === undefined) {
-        return 'Title must not be empty';
+function validateArticleIdentifiers(
+    fieldValue,
+    fieldName,
+    minLength,
+    maxLength
+) {
+    if (fieldValue === undefined) {
+        return `${fieldName} must not be empty`;
     }
 
-    const trimmedValue = title.trim();
+    const trimmedValue = fieldValue.trim();
 
     if (trimmedValue === '') {
-        return 'Title must not be empty';
+        return `${fieldValue} must not be empty`;
     }
 
-    if (trimmedValue.length < 10 || trimmedValue.length > 70) {
-        return 'Title must be between 10 and 70 characters';
+    if (trimmedValue.length < minLength || trimmedValue.length > maxLength) {
+        // eslint-disable-next-line @stylistic/max-len
+        return `${fieldName} must be between ${minLength} and ${maxLength} characters`;
     }
 
     const regex = /^[A-Za-z0-9.,:;?!\-"() ]+$/;
@@ -21,7 +27,7 @@ function validateTitle(title) {
         const failingChar = trimmedValue.match(/[^A-Za-z0-9.,:;?!\-"() ]/);
 
         // eslint-disable-next-line @stylistic/max-len
-        return `Title must only includes letters, numbers, spaces and basic punctuation only (${JSON.stringify(failingChar[0])} disallowed)`;
+        return `${fieldName} must only includes letters, numbers, spaces and basic punctuation only (${JSON.stringify(failingChar[0])} disallowed)`;
     }
 
     return null;
@@ -49,7 +55,12 @@ function validateBody(body) {
 // Returns null if data is valid (no errors)
 // Returns an instance of "ArticleError" if it isn't
 export default function validateArticle(jsonData) {
-    const titleValid = validateTitle(jsonData.title);
+    const titleValid = validateArticleIdentifiers(
+        jsonData.title,
+        'Title',
+        10,
+        70
+    );
     const bodyValid = validateBody(jsonData.body);
 
     const errorsPresent = [titleValid, bodyValid].some(

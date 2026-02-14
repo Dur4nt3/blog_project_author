@@ -159,6 +159,10 @@ body {
     min-height: 60vh;
 }
 
+.form-row.short-text-area > textarea {
+    min-height: 10lh;
+}
+
 .form-row > input:focus,
 .form-row > textarea:focus {
     border: 1px solid var(--primary-color);
@@ -266,8 +270,24 @@ body {
         width: 420px;
     }
 
+    .form-row.short-text-area > textarea {
+        min-height: 6lh;
+    }
+
     .popover-dropdown-text {
         max-width: 320px;
+    }
+}
+
+@media (min-width: 48rem) {
+    .form-row.short-text-area > textarea {
+        min-height: 5lh;
+    }
+}
+
+@media (min-width: 64rem) {
+    .form-row.short-text-area > textarea {
+        min-height: 4lh;
     }
 }
 

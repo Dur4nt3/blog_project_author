@@ -91,6 +91,27 @@
     margin-bottom: 1rem;
 }
 
+.article-modal-article-description {
+    word-wrap: break-word;
+    font-size: var(--fs-md);
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+}
+
+.article-modal-article-author {
+    word-wrap: break-word;
+    font-size: var(--fs-base);
+    color: var(--darker-subtext);
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    text-align: end;
+
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--darker-separator-border);
+}
+
 .article-modal-body > .article-modal-markdown-content {
     flex-grow: 1;
 }
@@ -255,6 +276,10 @@
 @media (min-width: 40rem) {
     .article-modal-body {
         max-width: 35rem;
+    }
+
+    .article-modal-article-author {
+        font-size: var(--fs-sm);
     }
 }
 

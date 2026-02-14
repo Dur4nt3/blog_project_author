@@ -9,17 +9,24 @@ import CreateArticleFooter from './CreateArticleFooter';
 export default function CreateArticle() {
     const response = useLoaderData();
 
-    if (response !== true) {
-        return <CreateArticleMain>
-            <CreationPageError response={response} />
-        </CreateArticleMain>
+    const authorUsername = response?.username;
+    const authorName = response?.name;
+
+    if (authorUsername === undefined || authorName === undefined) {
+        return (
+            <CreateArticleMain>
+                <CreationPageError response={response} />
+            </CreateArticleMain>
+        );
     }
 
-    return <>
-        <CreateArticleHeader />
-        <CreateArticleMain>
-            <CreateArticleForm />
-        </CreateArticleMain>
-        <CreateArticleFooter />
-    </>
+    return (
+        <>
+            <CreateArticleHeader />
+            <CreateArticleMain>
+                <CreateArticleForm name={authorName} />
+            </CreateArticleMain>
+            <CreateArticleFooter />
+        </>
+    );
 }

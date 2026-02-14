@@ -18,7 +18,24 @@ function TitlePopoverContent() {
                 characters.
             </span>
             <span className='popover-row'>
-                Requires a minimum of 10 characters and has a maximum of 70.
+                Requires a minimum of 10 characters and a maximum of 70.
+            </span>
+        </>
+    );
+}
+
+function DescriptionPopoverContent() {
+    return (
+        <>
+            <span className='popover-row'>
+                A short excerpt or summary of your article.
+            </span>
+            <span className='popover-row'>
+                Should describe what a reader should expect to encounter whilst
+                reading your article.
+            </span>
+            <span className='popover-row'>
+                Requires a minimum of 100 characters and a maximum of 300.
             </span>
         </>
     );
@@ -53,7 +70,7 @@ function BodyPopoverContent() {
     );
 }
 
-export default function CreateArticleForm() {
+export default function CreateArticleForm({ name }) {
     const fetcher = useFetcher();
     const formRef = useRef();
 
@@ -70,7 +87,9 @@ export default function CreateArticleForm() {
         >
             <PreviewArticleModal
                 title={new FormData(formRef.current).get('title')}
+                description={new FormData(formRef.current).get('description')}
                 body={new FormData(formRef.current).get('body')}
+                name={name}
                 opened={opened}
                 close={close}
             />
@@ -95,11 +114,22 @@ export default function CreateArticleForm() {
             <FormRowTextArea
                 labelContent={
                     <>
+                        <span>Excerpt/Summary</span>
+                        <HelpPopover content={<DescriptionPopoverContent />} />
+                    </>
+                }
+                fieldName='description'
+                error={fetcher.data?.errors?.description}
+                classes='short-text-area'
+            />
+
+            <FormRowTextArea
+                labelContent={
+                    <>
                         <span>Body (Markdown)</span>
                         <HelpPopover content={<BodyPopoverContent />} />
                     </>
                 }
-                inputType='text'
                 fieldName='body'
                 error={fetcher.data?.errors?.body}
             />

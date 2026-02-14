@@ -6,10 +6,17 @@ const modalClasses = {
     header: 'article-modal-header',
     title: 'article-modal-title',
     close: 'article-modal-close-button',
-    body: 'article-modal-body'
+    body: 'article-modal-body',
 };
 
-export default function PreviewArticleModal({ title, body, opened, close }) {
+export default function PreviewArticleModal({
+    title,
+    description,
+    body,
+    name,
+    opened,
+    close,
+}) {
     return (
         <>
             <Modal
@@ -23,12 +30,24 @@ export default function PreviewArticleModal({ title, body, opened, close }) {
                 transitionProps={{ transition: 'fade', duration: 200 }}
             >
                 <h2 className='article-modal-article-title'>{title}</h2>
-                <div className="article-modal-markdown-content">
-                    <Markdown components={{
-                        br: () => <span className='md-break'></span>
-                    }}>{body}</Markdown>
+                <h3 className='article-modal-article-description'>
+                    {description}
+                </h3>
+                <h4 className='article-modal-article-author'>
+                    By {name}
+                </h4>
+                <div className='article-modal-markdown-content'>
+                    <Markdown
+                        components={{
+                            br: () => <span className='md-break'></span>,
+                        }}
+                    >
+                        {body}
+                    </Markdown>
                 </div>
-                <button type='button' onClick={close}>End Preview</button>
+                <button type='button' onClick={close}>
+                    End Preview
+                </button>
             </Modal>
         </>
     );

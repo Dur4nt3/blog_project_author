@@ -17,9 +17,12 @@ export default async function newLoader() {
         return response.status;
     }
 
-    if (jsonData.permissions !== undefined) {
+    if (jsonData.permissions !== undefined && jsonData.user !== undefined) {
         if (jsonData.permissions.authorAccess === true) {
-            return true;
+            return {
+                username: jsonData.user.username,
+                name: jsonData.user.name,
+            };
         }
 
         return 403;
