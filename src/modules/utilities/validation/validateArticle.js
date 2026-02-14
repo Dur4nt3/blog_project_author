@@ -13,7 +13,7 @@ function validateArticleIdentifiers(
     const trimmedValue = fieldValue.trim();
 
     if (trimmedValue === '') {
-        return `${fieldValue} must not be empty`;
+        return `${fieldName} must not be empty`;
     }
 
     if (trimmedValue.length < minLength || trimmedValue.length > maxLength) {
@@ -61,9 +61,15 @@ export default function validateArticle(jsonData) {
         10,
         70
     );
+    const descriptionValid = validateArticleIdentifiers(
+        jsonData.description,
+        'Description',
+        100,
+        300
+    );
     const bodyValid = validateBody(jsonData.body);
 
-    const errorsPresent = [titleValid, bodyValid].some(
+    const errorsPresent = [titleValid, descriptionValid, bodyValid].some(
         (field) => field !== null
     );
 
@@ -71,6 +77,7 @@ export default function validateArticle(jsonData) {
         return new ArticleError(
             'Please fix the below errors.',
             titleValid,
+            descriptionValid,
             bodyValid
         );
     }

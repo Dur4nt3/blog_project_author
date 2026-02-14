@@ -1,15 +1,7 @@
 import { redirect } from 'react-router';
 import validateSignup from '../validation/validateSignup';
+import getErrorsObject from '../validation/getErrorsObject';
 import SignupError from '../classes/SignupError';
-
-function getErrorsObject(errors) {
-    const errorsObject = {};
-    for (const error of errors) {
-        errorsObject[error.path] = error.msg;
-    }
-
-    return errorsObject;
-}
 
 function formatSignupResults(results, status) {
     if (results.success === true) {
@@ -33,7 +25,10 @@ function formatSignupResults(results, status) {
 
     const errorsObject = getErrorsObject(results.errors);
 
-    if (errorsObject.role !== undefined && errorsObject.role.includes('Could not validate')) {
+    if (
+        errorsObject.role !== undefined &&
+        errorsObject.role.includes('Could not validate')
+    ) {
         return serverError;
     }
 
