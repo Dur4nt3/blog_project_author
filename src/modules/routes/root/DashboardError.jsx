@@ -4,6 +4,18 @@ function DashboardErrorContent({statusCode}) {
     // eslint-disable-next-line no-unused-vars
     const fetcher = useFetcher();
 
+    if (statusCode === 502) {
+        return (
+            <>
+                <h1 className='error-code'>502</h1>
+                <h2 className='error-header'>Bad Gateway</h2>
+                <p className='error-content'>
+                    Could not process your request, please try again later.
+                </p>
+            </>
+        );
+    }
+
     if (statusCode === 403) {
         return (
             <>

@@ -5,7 +5,13 @@ export default async function rootLoader() {
     const response = await fetch(serverUrl, {
         method: 'GET',
         credentials: 'include',
-    });
+    }).catch(() => 502);
+
+    // Fetch failed
+    // Shows the most likely error to occur
+    if (response === 502) {
+        return 502;
+    }
 
     if (response.status === 401) {
         return redirect('/login');
