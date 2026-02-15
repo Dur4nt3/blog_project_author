@@ -293,6 +293,15 @@
     text-align: center;
 }
 
+.deletion-modal-deleted-resource.error-occurred {
+    font-size: var(--fs-sm);
+    padding: 0.5rem;
+    background-color: var(--background-error);
+    border-radius: 0.35rem;
+    border: 1px solid var(--error-border);
+    color: var(--error-text);
+}
+
 .deletion-modal-actions {
     margin-top: 1.5rem;
     width: 100%;
@@ -312,13 +321,17 @@
     cursor: pointer;
     padding: 0.15rem 0.3rem;
 
+    display: grid;
+    place-items: center;
+    height: calc(1lh + 0.15rem * 2);
+
     border-radius: 0.35rem;
     outline: 2px solid transparent;
     outline-offset: 2px;
 
     font-size: var(--fs-base);
 
-    transition: 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out;
 }
 
 .deletion-modal-actions button:hover,
@@ -339,10 +352,10 @@
     color: var(--light-text);
 }
 
-.logout-modal-logout-button {
-    display: grid;
-    place-items: center;
-    height: calc(1lh + 0.15rem * 2);
+button.deletion-modal-delete-button.error-occurred {
+    outline: none;
+    opacity: 0.75;
+    cursor: not-allowed;
 }
 
 .deletion-modal-cancel-button {

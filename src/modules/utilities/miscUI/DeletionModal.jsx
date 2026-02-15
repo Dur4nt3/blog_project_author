@@ -1,6 +1,9 @@
 import { Modal } from '@mantine/core';
 
+import { useEffect, useState } from 'react';
 import { useFetcher } from 'react-router';
+
+import FormLoader from './FormLoader';
 
 const modalClasses = {
     content: 'deletion-modal-content',
@@ -10,28 +13,78 @@ const modalClasses = {
 };
 
 export default function DeletionModal({ postId, resourceName, opened, close }) {
-    // eslint-disable-next-line no-unused-vars
     const fetcher = useFetcher();
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        const success = fetcher.data?.success;
+
+        if (success === undefined) {
+            return;
+        }
+
+        if (success === true) {
+            close();
+            return;
+        }
+
+        if (success === false) {
+            setError(true);
+        }
+    }, [fetcher.data, close]);
 
     return (
         <>
             <Modal
                 closeButtonProps={{ 'aria-label': 'cancel deletion' }}
                 opened={opened}
-                onClose={close}
+                onClose={() => {
+                    setError(false);
+                    close();
+                }}
                 title='Delete Article'
                 classNames={modalClasses}
             >
-                <p className='deletion-modal-deleted-resource'>
-                    Delete: {resourceName}?
+                <p
+                    className={
+                        error === true
+                            ? 'deletion-modal-deleted-resource error-occurred'
+                            : 'deletion-modal-deleted-resource'
+                    }
+                >
+                    {error === true
+                        ? 'An error occurred whilst processing your request'
+                        : `Delete: ${resourceName}?`}
                 </p>
 
-                <div className="deletion-modal-actions">
+                <div className='deletion-modal-actions'>
                     <fetcher.Form method='DELETE' action={`/delete/${postId}`}>
-                        <button className='deletion-modal-delete-button' type='submit' onClick={close}>Delete</button>
+                        <button
+                            tabIndex={error === true ? -1 : 0}
+                            className={
+                                error === true
+                                    ? 'deletion-modal-delete-button error-occurred'
+                                    : 'deletion-modal-delete-button'
+                            }
+                            type={error === true ? 'button' : 'submit'}
+                        >
+                            {fetcher.state === 'idle' ? (
+                                'Delete'
+                            ) : (
+                                <FormLoader />
+                            )}
+                        </button>
                     </fetcher.Form>
 
-                    <button className='deletion-modal-cancel-button' onClick={close}>Cancel</button>
+                    <button
+                        className='deletion-modal-cancel-button'
+                        onClick={() => {
+                            setError(false);
+                            close();
+                        }}
+                    >
+                        Cancel
+                    </button>
                 </div>
             </Modal>
         </>
