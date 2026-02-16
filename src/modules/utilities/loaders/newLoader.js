@@ -1,32 +1,16 @@
 import { redirect } from 'react-router';
+import requireAuthorAccess from '../auth/requireAuthorAccess';
 
 export default async function newLoader() {
-    const serverUrl = `${import.meta.env.VITE_API_URL}/users/me/permissions`;
-    const response = await fetch(serverUrl, {
-        method: 'GET',
-        credentials: 'include',
-    });
+    const user = await requireAuthorAccess();
 
-    if (response.status === 401) {
-        return redirect('/login');
-    }
-
-    const jsonData = await response.json();
-
-    if (jsonData.success === false) {
-        return response.status;
-    }
-
-    if (jsonData.permissions !== undefined && jsonData.user !== undefined) {
-        if (jsonData.permissions.authorAccess === true) {
-            return {
-                username: jsonData.user.username,
-                name: jsonData.user.name,
-            };
+    if (typeof user !== 'object') {
+        if (user === 401) {
+            return redirect('/login');
         }
 
-        return 403;
+        return user;
     }
 
-    return false;
+    return { username: user.username, name: user.name };
 }

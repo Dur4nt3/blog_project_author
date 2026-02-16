@@ -10,11 +10,12 @@ function formInputClass(error) {
     return 'has-error';
 }
 
-export default function FormRowTextArea({ labelContent, fieldName, error, classes = '' }) {
+export default function FormRowTextArea({ labelContent, fieldName, error, classes = '', defaultValue = '' }) {
     return (
         <div className={`form-row ${classes}`}>
             <label htmlFor={fieldName}>{labelContent}</label>
             <textarea
+                defaultValue={defaultValue}
                 name={fieldName}
                 id={fieldName}
                 className={formInputClass(error)}

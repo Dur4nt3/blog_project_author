@@ -111,7 +111,7 @@ body {
     border-radius: 0.35rem;
     background-color: var(--background-error);
     border: 1px solid var(--error-border);
-    margin-bottom: 1rem;
+    margin: 1rem 0;
     font-weight: 500;
 }
 
@@ -156,7 +156,13 @@ body {
     resize: vertical;
     min-width: 100%;
     max-width: 100%;
-    min-height: 60vh;
+    min-height: 30vh;
+}
+
+.edit-article-form .form-row textarea {
+    /* Nice for supporting browsers */
+    /* Users on non-supporting browsers will have to simply resize the textarea */
+    field-sizing: content;
 }
 
 .form-row.short-text-area > textarea {
@@ -174,7 +180,7 @@ body {
 }
 
 .form-row > input.is-valid:focus,
-.form-row > input.is-valid:focus {
+.form-row > textarea.is-valid:focus {
     border: 1px solid var(--valid-border);
 }
 
@@ -270,6 +276,10 @@ body {
         width: 420px;
     }
 
+    .form-row > textarea {
+        min-height: 40vh;
+    }
+
     .form-row.short-text-area > textarea {
         min-height: 6lh;
     }
@@ -280,12 +290,20 @@ body {
 }
 
 @media (min-width: 48rem) {
+    .form-row > textarea {
+        min-height: 42.5vh;
+    }
+    
     .form-row.short-text-area > textarea {
         min-height: 5lh;
     }
 }
 
 @media (min-width: 64rem) {
+    .form-row > textarea {
+        min-height: 45vh;
+    }
+
     .form-row.short-text-area > textarea {
         min-height: 4lh;
     }
@@ -298,6 +316,10 @@ body {
 
     .popover-dropdown-text {
         max-width: 400px;
+    }
+
+    .form-row > textarea {
+        min-height: 42.5vh;
     }
 }
 

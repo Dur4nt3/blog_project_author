@@ -1,4 +1,5 @@
 import ArticleError from '../classes/ArticleError';
+import { formatArticleFormError } from '../formatFormLevelError';
 
 function validateArticleIdentifiers(
     fieldValue,
@@ -55,32 +56,32 @@ function validateBody(body) {
 // Returns null if data is valid (no errors)
 // Returns an instance of "ArticleError" if it isn't
 export default function validateArticle(jsonData) {
-    const titleValid = validateArticleIdentifiers(
+    const titleError = validateArticleIdentifiers(
         jsonData.title,
         'Title',
         10,
         70
     );
-    const descriptionValid = validateArticleIdentifiers(
+    const descriptionError = validateArticleIdentifiers(
         jsonData.description,
         'Description',
         100,
         300
     );
-    const bodyValid = validateBody(jsonData.body);
+    const bodyError = validateBody(jsonData.body);
 
-    const errorsPresent = [titleValid, descriptionValid, bodyValid].some(
-        (field) => field !== null
-    );
-
-    if (errorsPresent) {
-        return new ArticleError(
-            'Please fix the below errors.',
-            titleValid,
-            descriptionValid,
-            bodyValid
-        );
+    if (!titleError && !descriptionError && !bodyError) {
+        return null;
     }
 
-    return null;
+    return new ArticleError(
+        formatArticleFormError(
+            titleError !== null ? 'Title' : null,
+            descriptionError !== null ? 'Excerpt/Summary' : null,
+            bodyError !== null ? 'Body' : null
+        ),
+        titleError,
+        descriptionError,
+        bodyError
+    );
 }

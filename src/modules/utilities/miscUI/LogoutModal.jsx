@@ -1,6 +1,6 @@
 import { Modal } from '@mantine/core';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useFetcher } from 'react-router';
 
 import FormLoader from './FormLoader';
@@ -14,10 +14,22 @@ const modalClasses = {
 
 export default function LogoutModal({ opened, close }) {
     const fetcher = useFetcher();
+    const [error, setError] = useState(false);
 
     useEffect(() => {
-        if (fetcher.data?.success !== undefined) {
+        const success = fetcher.data?.success;
+
+        if (success === undefined) {
+            return;
+        }
+
+        if (success === true) {
             close();
+            return;
+        }
+
+        if (success === false) {
+            setError(true);
         }
     }, [fetcher.data, close]);
 
@@ -26,19 +38,41 @@ export default function LogoutModal({ opened, close }) {
             <Modal
                 closeButtonProps={{ 'aria-label': 'cancel logout' }}
                 opened={opened}
-                onClose={close}
+                onClose={() => {
+                    setError(false);
+                    close();
+                }}
                 title='Logout'
                 classNames={modalClasses}
             >
-                <p className='logout-modal-notice'>End your session?</p>
+                <p
+                    className={
+                        error === true
+                            ? 'logout-modal-notice error-occurred'
+                            : 'logout-modal-notice'
+                    }
+                >
+                    {error === true
+                        ? 'An error occurred whilst processing your request'
+                        : 'End your session?'}
+                </p>
 
                 <div className='logout-modal-actions'>
                     <fetcher.Form method='DELETE' action={'/logout'}>
                         <button
-                            className='logout-modal-logout-button'
-                            type='submit'
+                            tabIndex={error === true ? -1 : 0}
+                            className={
+                                error === true
+                                    ? 'logout-modal-logout-button error-occurred'
+                                    : 'logout-modal-logout-button'
+                            }
+                            type={error === true ? 'button' : 'submit'}
                         >
-                            {fetcher.state === 'idle' ? 'Logout' : <FormLoader />}
+                            {fetcher.state === 'idle' ? (
+                                'Logout'
+                            ) : (
+                                <FormLoader />
+                            )}
                         </button>
                     </fetcher.Form>
                 </div>

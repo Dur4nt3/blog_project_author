@@ -2,7 +2,7 @@ import { redirect } from 'react-router';
 import validateArticle from '../validation/validateArticle';
 import formatArticleResults from '../formatArticleResults';
 
-export default async function newAction({ request }) {
+export default async function editAction({ request, params }) {
     const data = await request.formData();
     const jsonData = Object.fromEntries(data);
 
@@ -11,10 +11,12 @@ export default async function newAction({ request }) {
         return { errors: clientValidation };
     }
 
-    const serverUrl = `${import.meta.env.VITE_API_URL}/posts`;
+    const { postId } = params;
+
+    const serverUrl = `${import.meta.env.VITE_API_URL}/posts/${postId}`;
 
     const response = await fetch(serverUrl, {
-        method: 'POST',
+        method: 'PUT',
         credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
@@ -24,10 +26,7 @@ export default async function newAction({ request }) {
 
     const results = await response.json();
 
-    const formattedResults = formatArticleResults(
-        results,
-        response.status
-    );
+    const formattedResults = formatArticleResults(results, response.status);
 
     if (formattedResults === true) {
         return redirect('/');

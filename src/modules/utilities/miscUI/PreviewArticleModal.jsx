@@ -1,5 +1,6 @@
 import { Modal } from '@mantine/core';
 import Markdown from 'react-markdown';
+import { formatWithNamedMonth } from '../formatDate';
 
 const modalClasses = {
     content: 'article-modal-content',
@@ -10,10 +11,8 @@ const modalClasses = {
 };
 
 export default function PreviewArticleModal({
-    title,
-    description,
-    body,
-    name,
+    article,
+    authorName,
     opened,
     close,
 }) {
@@ -29,12 +28,17 @@ export default function PreviewArticleModal({
                 radius={0}
                 transitionProps={{ transition: 'fade', duration: 200 }}
             >
-                <h2 className='article-modal-article-title'>{title}</h2>
+                <h2 className='article-modal-article-title'>{article.title}</h2>
                 <h3 className='article-modal-article-description'>
-                    {description}
+                    {article.description}
                 </h3>
                 <h4 className='article-modal-article-author'>
-                    By {name}
+                    By {authorName} @{' '}
+                    {formatWithNamedMonth(
+                        article.createdAt !== undefined
+                            ? article.createdAt
+                            : new Date().toISOString()
+                    )}
                 </h4>
                 <div className='article-modal-markdown-content'>
                     <Markdown
@@ -42,9 +46,15 @@ export default function PreviewArticleModal({
                             br: () => <span className='md-break'></span>,
                         }}
                     >
-                        {body}
+                        {article.body}
                     </Markdown>
                 </div>
+                {article.lastModification !== undefined && (
+                    <p className='article-modal-latest-edit'>
+                        Latest edit @{' '}
+                        {formatWithNamedMonth(article.lastModification)}
+                    </p>
+                )}
                 <button type='button' onClick={close}>
                     End Preview
                 </button>

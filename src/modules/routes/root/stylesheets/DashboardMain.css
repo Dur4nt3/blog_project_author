@@ -1,5 +1,6 @@
 .dashboard-main,
-.create-article-main {
+.create-article-main,
+.edit-article-main {
     flex-grow: 1;
     margin-top: 1.5rem;
 
@@ -9,7 +10,8 @@
 
 .dashboard-main:has(.dashboard-error-cont),
 .dashboard-main:has(.dashboard-empty-notice),
-.create-article-main:has(.create-article-error-cont) {
+.create-article-main:has(.create-article-error-cont),
+.edit-article-main:has(.create-article-error-cont) {
     margin-top: 0;
     display: grid;
     place-items: center;
@@ -293,7 +295,8 @@
     text-align: center;
 }
 
-.deletion-modal-deleted-resource.error-occurred {
+.deletion-modal-deleted-resource.error-occurred,
+.logout-modal-notice.error-occurred {
     font-size: var(--fs-sm);
     padding: 0.5rem;
     background-color: var(--background-error);
@@ -334,8 +337,8 @@
     transition: transform 0.2s ease-in-out;
 }
 
-.deletion-modal-actions button:hover,
-.logout-modal-actions button:hover {
+.deletion-modal-actions button:not(.error-occurred):hover,
+.logout-modal-actions button:not(.error-occurred):hover {
     transform: translateY(-0.15rem);
 }
 
@@ -352,7 +355,8 @@
     color: var(--light-text);
 }
 
-button.deletion-modal-delete-button.error-occurred {
+button.deletion-modal-delete-button.error-occurred,
+button.logout-modal-logout-button.error-occurred {
     outline: none;
     opacity: 0.75;
     cursor: not-allowed;
@@ -367,7 +371,8 @@ button.deletion-modal-delete-button.error-occurred {
 
 @media (min-width: 40rem) {
     .dashboard-main,
-    .create-article-main {
+    .create-article-main,
+    .edit-article-main {
         max-width: 35rem;
     }
 
@@ -378,7 +383,8 @@ button.deletion-modal-delete-button.error-occurred {
 
 @media (min-width: 48rem) {
     .dashboard-main,
-    .create-article-main {
+    .create-article-main,
+    .edit-article-main {
         max-width: 45rem;
     }
 
@@ -402,14 +408,16 @@ button.deletion-modal-delete-button.error-occurred {
 
 @media (min-width: 64rem) {
     .dashboard-main,
-    .create-article-main {
+    .create-article-main,
+    .edit-article-main {
         max-width: 50rem;
     }
 }
 
 @media (min-width: 80rem) {
     .dashboard-main,
-    .create-article-main {
+    .create-article-main,
+    .edit-article-main {
         max-width: 64rem;
     }
 }

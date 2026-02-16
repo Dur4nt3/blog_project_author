@@ -3,7 +3,7 @@ import { useLoaderData } from 'react-router';
 import CreateArticleHeader from './CreateArticleHeader';
 import CreateArticleMain from './CreateArticleMain';
 import CreationPageError from './CreationPageError';
-import CreateArticleForm from './CreateArticleForm';
+import ArticleForm from './ArticleForm';
 import CreateArticleFooter from './CreateArticleFooter';
 
 export default function CreateArticle() {
@@ -24,7 +24,7 @@ export default function CreateArticle() {
         <>
             <CreateArticleHeader />
             <CreateArticleMain>
-                <CreateArticleForm name={authorName} />
+                <ArticleForm actionRoute='/new' method='POST'  classBase='create-article' authorName={authorName} />
             </CreateArticleMain>
             <CreateArticleFooter />
         </>

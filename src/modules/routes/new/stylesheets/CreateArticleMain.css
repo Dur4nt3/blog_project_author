@@ -1,13 +1,15 @@
 /* NOTE: VARIOUS SELECTORS ARE INCLUDED IN /src/modules/routes/root/stylesheets/DashboardMain.css */
 
-.create-article-form {
+.create-article-form,
+.edit-article-form {
     width: 100%;
     margin-bottom: 2rem;
 }
-.create-article-form-actions {
+.create-article-form-actions,
+.edit-article-form-actions {
     max-width: max-content;
 
-    margin-top: 2rem;
+    margin: 1rem 0;
     margin-left: auto;
 
     display: grid;
@@ -15,7 +17,8 @@
     gap: 0.75rem;
 }
 
-.create-article-form-actions > button {
+.create-article-form-actions > button,
+.edit-article-form-actions > button {
     padding: 0.35rem 1.15rem;
 
     border-radius: 0.35rem;
@@ -37,22 +40,26 @@
     transition: 0.2s ease-in-out;
 }
 
-.create-article-form-actions > .preview-article {
+.create-article-form-actions > .preview-article,
+.edit-article-form-actions > .preview-article {
     background-color: var(--background-slight-contrast);
     border: 1px solid var(--darker-separator-border);
     color: var(--dark-text);
 }
 
-.create-article-form-actions > .preview-article:hover {
+.create-article-form-actions > .preview-article:hover,
+.edit-article-form-actions > .preview-article:hover {
     background-color: var(--secondary-color);
 }
 
-.create-article-form-actions > .create-article {
+.create-article-form-actions > .create-article,
+.edit-article-form-actions >  .edit-article {
     background-color: var(--accent-color);
     color: var(--light-text);
 }
 
-.create-article-form-actions > .create-article:hover {
+.create-article-form-actions > .create-article:hover,
+.edit-article-form-actions >  .edit-article:hover {
     background-color: var(--hover-accent-lighter);
 }
 
@@ -99,7 +106,8 @@
     margin-bottom: 0.75rem;
 }
 
-.article-modal-article-author {
+.article-modal-article-author,
+.article-modal-latest-edit {
     word-wrap: break-word;
     font-size: var(--fs-base);
     color: var(--darker-subtext);
@@ -110,6 +118,12 @@
 
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--darker-separator-border);
+}
+
+.article-modal-latest-edit {
+    margin: 1rem 0;
+    padding: 0;
+    border: none;
 }
 
 .article-modal-body > .article-modal-markdown-content {
@@ -278,7 +292,8 @@
         max-width: 35rem;
     }
 
-    .article-modal-article-author {
+    .article-modal-article-author,
+    .article-modal-latest-edit {
         font-size: var(--fs-sm);
     }
 }
