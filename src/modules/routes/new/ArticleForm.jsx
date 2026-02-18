@@ -13,6 +13,8 @@ import FormRowTextArea from '../root/FormRowTextArea';
 import TitlePopoverContent from './TitlePopoverContent';
 import DescriptionPopoverContent from './DescriptionPopoverContent';
 import BodyPopoverContent from './BodyPopoverContent';
+import ArticleData from '../../utilities/classes/ArticleData';
+import { formatWithNamedMonth } from '../../utilities/formatDate';
 
 export default function ArticleForm({
     actionRoute,
@@ -34,7 +36,17 @@ export default function ArticleForm({
             ref={formRef}
         >
             <PreviewArticleModal
-                article={articleData}
+                article={
+                    new ArticleData(
+                        new FormData(formRef.current).get('title'),
+                        new FormData(formRef.current).get('description'),
+                        new FormData(formRef.current).get('body'),
+                        articleData.createdAt
+                            ? articleData.createdAt
+                            : formatWithNamedMonth(new Date().toISOString()),
+                        formatWithNamedMonth(new Date().toISOString())
+                    )
+                }
                 authorName={authorName}
                 opened={opened}
                 close={close}
@@ -82,9 +94,7 @@ export default function ArticleForm({
                 fieldName='body'
                 error={fetcher.data?.errors?.body}
                 defaultValue={
-                    articleData?.body !== undefined
-                        ? articleData?.body
-                        : ''
+                    articleData?.body !== undefined ? articleData?.body : ''
                 }
             />
 
