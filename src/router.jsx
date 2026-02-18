@@ -20,12 +20,15 @@ import newAction from './modules/utilities/actions/newAction';
 import editAction from './modules/utilities/actions/editAction';
 import deleteAction from './modules/utilities/actions/deleteAction';
 
+import FullscreenLoader from './modules/utilities/miscUI/FullscreenLoader';
+
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Root />,
         errorElement: <Error404 />,
         loader: rootLoader,
+        hydrateFallbackElement: <FullscreenLoader />
     },
     {
         path: 'login',
@@ -33,12 +36,14 @@ const router = createBrowserRouter([
         errorElement: <Error404 />,
         loader: loginLoader,
         action: loginAction,
+        hydrateFallbackElement: <FullscreenLoader />
     },
     {
         path: 'signup',
         element: <Signup />,
         errorElement: <Error404 />,
         action: signupAction,
+        hydrateFallbackElement: <FullscreenLoader />
     },
     {
         path: '/new',
@@ -46,6 +51,7 @@ const router = createBrowserRouter([
         errorElement: <Error404 />,
         loader: newLoader,
         action: newAction,
+        hydrateFallbackElement: <FullscreenLoader />
     },
     {
         path: '/edit/:postId',
@@ -53,6 +59,7 @@ const router = createBrowserRouter([
         errorElement: <Error404 />,
         loader: editLoader,
         action: editAction,
+        hydrateFallbackElement: <FullscreenLoader />
     },
     {
         // Solely for handling DELETE requests

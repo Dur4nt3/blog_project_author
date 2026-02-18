@@ -72,6 +72,24 @@ body {
     align-items: center;
 }
 
+#root:has(.fullscreen-loader) {
+    display: grid;
+    place-items: center;
+}
+
+.fullscreen-loader {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.fullscreen-loader > h1 {
+    font-size: var(--fs-xl);
+    font-weight: 500;
+}
+
 #root:has(.author-form) {
     align-items: center;
 }
