@@ -1,5 +1,7 @@
 import authorizationCheck from './authorizationCheck';
 
+// Returns the user's username and name if they're an author
+// Returns error code otherwise
 export default async function requireAuthorAccess() {
     const response = await authorizationCheck();
 
