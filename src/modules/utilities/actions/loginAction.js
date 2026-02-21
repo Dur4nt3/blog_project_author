@@ -32,11 +32,7 @@ export default async function loginAction({ request }) {
 
     const results = await response.json();
 
-    console.log('received login results: ', results);
-
     const formattedResults = formatLoginResults(results, response.status);
-
-    console.log('formatted results', formattedResults);
 
     if (formattedResults === true) {
         return redirect('/');

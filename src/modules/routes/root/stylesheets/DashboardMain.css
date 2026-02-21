@@ -60,7 +60,13 @@
     margin-bottom: 0.75rem;
 }
 
+.dashboard-error-cont > .error-in-depth > form,
+.create-article-error-cont > .error-in-depth > form {
+    display: flex;
+}
+
 .dashboard-error-cont > .error-in-depth > form > button,
+.dashboard-error-cont > .error-in-depth > form > a,
 .create-article-error-cont > .error-in-depth > form > button {
     padding: 0;
     color: var(--dark-text);

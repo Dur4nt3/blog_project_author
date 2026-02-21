@@ -1,4 +1,4 @@
-import { useFetcher } from 'react-router';
+import { useFetcher, Link } from 'react-router';
 
 function DashboardErrorContent({statusCode}) {
     // eslint-disable-next-line no-unused-vars
@@ -33,8 +33,10 @@ function DashboardErrorContent({statusCode}) {
                 </p>
                 <div className='error-in-depth'>
                     <fetcher.Form method='DELETE' action='/logout'>
-                        <p>If you're an author</p>
-                        <button type='submit'>Reset your session</button>
+                        <p>If you're an author&nbsp;</p>
+                        <button type='submit'>reset your session&nbsp;</button>
+                        <p>and,&nbsp;</p>
+                        <Link to='/login'>Login</Link>.
                     </fetcher.Form>
                 </div>
             </>

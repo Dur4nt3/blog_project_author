@@ -1,4 +1,5 @@
 import { redirect } from 'react-router';
+import getCSRFToken from '../auth/getCSRFToken';
 import validateArticle from '../validation/validateArticle';
 import formatArticleResults from '../formatArticleResults';
 
@@ -18,6 +19,7 @@ export default async function newAction({ request }) {
         credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
+            'X-CSRF-Token': getCSRFToken(),
         },
         body: JSON.stringify(jsonData),
     });
