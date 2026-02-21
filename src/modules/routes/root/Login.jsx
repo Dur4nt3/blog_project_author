@@ -7,6 +7,8 @@ import FormLoader from '../../utilities/miscUI/FormLoader';
 export default function Login() {
     const fetcher = useFetcher();
 
+    console.log('rendered login, fetcher is: ', fetcher);
+
     return (
         <fetcher.Form method='POST' className='author-form login-form'>
             <h1 className='form-heading'>Log in</h1>
