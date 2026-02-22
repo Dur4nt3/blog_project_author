@@ -1,3 +1,4 @@
+import { redirect } from 'react-router';
 import getCSRFToken from '../auth/getCSRFToken';
 
 export default async function logoutAction() {
@@ -11,6 +12,10 @@ export default async function logoutAction() {
     });
 
     const jsonData = await response.json();
+
+    if (jsonData.success === true) {
+        return redirect('/login');
+    }
 
     return jsonData;
 }
