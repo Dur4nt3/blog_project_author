@@ -34,9 +34,9 @@ function DashboardErrorContent({statusCode}) {
                 <div className='error-in-depth'>
                     <fetcher.Form method='DELETE' action='/logout'>
                         <p>If you're an author&nbsp;</p>
-                        <button type='submit'>reset your session&nbsp;</button>
-                        <p>and,&nbsp;</p>
-                        <Link to='/login'>Login</Link>.
+                        <button type='submit'>reset your session</button>
+                        <p>&nbsp;or&nbsp;</p>
+                        <Link to='/login'>login</Link>.
                     </fetcher.Form>
                 </div>
             </>

@@ -1,4 +1,5 @@
 import { redirect } from 'react-router';
+import setCSRFToken from '../auth/setCSRFToken';
 
 function formatLoginResults(results, status) {
     if (results.success === true) {
@@ -35,6 +36,7 @@ export default async function loginAction({ request }) {
     const formattedResults = formatLoginResults(results, response.status);
 
     if (formattedResults === true) {
+        setCSRFToken(results.csrfToken);
         return redirect('/');
     }
 
